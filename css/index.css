@@ -1,0 +1,54 @@
+.container{
+	display: table;
+	margin: auto;
+	width: 100%;
+	max-width: 1056px;
+}
+
+.row-container{
+	display: table;
+	width: 100%;
+	margin: auto;
+	margin-top: 20px;
+}
+
+.row{
+	display: table;
+	width: 88%;
+	float: left;
+}
+
+.bar{
+	position: relative;
+	top: 5px;
+}
+
+.bar-o{
+	height: 16px;
+	float: left;
+	display: table;
+}
+
+.bar-o.hover .bar{
+	background-color: black;
+}
+
+.verdict-1{
+	background-color: #eee;
+}
+
+.verdict-2{
+	background-color: #45D541;
+}
+
+.verdict-3{
+	background-color: orange;
+}
+
+.verdict-4{
+	background-color: #F1F409;
+}
+
+.verdict-5{
+	background-color: #D60000;
+}
