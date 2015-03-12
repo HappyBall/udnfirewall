@@ -1,10 +1,17 @@
 var allMediaDict = {}
-var dayNum = 68;
+
+var origin_yr = 2015;
+var origin_mn = 0;
+var origin_dy = 1;
+
+var dayNum = daydiff(transferDate(origin_yr, origin_mn, origin_dy), transferDate(2015, 2, 11)) + 1;
+// console.log(dayNum);
 var w = 100/dayNum;
-var yr = 2015;
-var mn = 0;
-var dy = 1;
-var daysInMonthNow = getdaysInMonth(mn + 1, yr);
+
+var yr = origin_yr;
+var mn = origin_mn;
+var dy = origin_dy;
+var daysInMonthNow = getdaysInMonth(origin_mn + 1, origin_yr);
 
 d3.json("data/allMediaDayType.json", function (dataset) {
 	allMediaDict = dataset;
@@ -12,9 +19,11 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	for(var mediaIdx = 0; mediaIdx < 17; mediaIdx ++){
 
 		var mediaName = getMediaName(mediaIdx);
-		yr = 2015;
-		mn = 0;
-		dy = 1;
+		yr = origin_yr;
+		mn = origin_mn;
+		dy = origin_dy;
+
+		$("#percent-" + mediaName).text(allMediaDict[mediaName]["percent"]);
 
 		for(var i = 0; i < dayNum; i++){
 			if(dy > daysInMonthNow){
@@ -27,6 +36,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 				daysInMonthNow = getdaysInMonth(mn + 1, yr);
 			}
 			var date = "day-" + yr.toString() + "-" + mn.toString() + "-" + dy.toString();
+			var date_for_tip = "day-" + yr.toString() + "-" + (mn+1).toString() + "-" + dy.toString();
 			var type;
 			// console.log(date);
 
@@ -42,13 +52,21 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 			d3.select("." + mediaName)
 			.append("div")
 			.attr("class", "bar-o")
-			.attr("id", date)
+			.attr("id", mediaName + '-' + date)
 			.style({
 				"width": w.toString() + "%"
 			})
 			.append("div")
 			.attr("class", "bar " + type)
 			.style("height", "6px");
+
+			$("#" + mediaName + '-' + date).simpletip({
+				fixed: true,
+				position: 'top',
+				content: date_for_tip,
+				showEffect: "none",
+				hideEffect: "none"
+			});
 
 			dy += 1;
 		}
@@ -109,4 +127,12 @@ function getMediaName(idx){
         case 16:
             return "bsweekly";
     }
+}
+
+function transferDate(year, month, day) {
+    return new Date(year, month, day);
+}
+
+function daydiff(first, second) {
+    return (second-first)/(1000*60*60*24);
 }

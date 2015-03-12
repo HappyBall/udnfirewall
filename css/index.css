@@ -5,6 +5,14 @@
 	max-width: 1056px;
 }
 
+.tooltip{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 3;
+	display: none;
+}
+
 .row-container{
 	display: table;
 	width: 100%;
@@ -14,8 +22,20 @@
 
 .row{
 	display: table;
-	width: 88%;
+	width: 80%;
 	float: left;
+}
+
+.row-medianame{
+	display: table;
+	float: left;
+	width: 80px;
+}
+
+.row-percent{
+	display: table;
+	float: left;
+	margin-left: 10px;
 }
 
 .bar{
