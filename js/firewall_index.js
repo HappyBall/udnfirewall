@@ -53,7 +53,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 			.append("div")
 			.attr("class", "bar-o")
 			.attr("id", mediaName + '-' + date)
-			.attr("onclick", "location.href='" + mediaName + "_page.html'")
+			.attr("onclick", "location.href='" + mediaName + "_page.php'")
 			.style({
 				"width": w.toString() + "%"
 			})
