@@ -12,44 +12,47 @@ var yr = origin_yr;
 var mn = origin_mn;
 var dy = origin_dy;
 var daysInMonthNow = getdaysInMonth(origin_mn + 1, origin_yr);
-var sortPercentArray = [];
 
 d3.json("data/allMediaDayType.json", function (dataset) {
 	allMediaDict = dataset;
-	// console.log(allMediaDict);
 
-	for(var i = 0; i < 17; i++){
-		var tempDict = {};
-		tempDict["mediaName"] = getMediaName(i);
-		tempDict["percent"] = parseInt(allMediaDict[getMediaName(i)]["percent"]);
-		sortPercentArray.push(tempDict);
+	var allKeys = Object.keys(allMediaDict["udn"]);
+	var monthDict = {};
 
+	for(var o in allKeys){
+		if(allKeys[o].split("-")[0] != "day"){
+			continue;
+		}
+		else if(allKeys[o].split("-")[1] + "-" + allKeys[o].split("-")[2] in monthDict){
+			continue;
+		}
+		else{
+			monthDict[allKeys[o].split("-")[1] + "-" + allKeys[o].split("-")[2]] = 1;
+		}
+		// console.log(allKeys[o].split("-")[0]);
 	}
 
-	sortPercentArray.sort(function(a, b){return b["percent"] - a["percent"]});
+	for (var i in Object.keys(monthDict)){
+		d3.select("#image-container")
+		.append("div")
+		.attr("class", "month")
+		.attr("id", "day-" + Object.keys(monthDict)[i]);
 
-	console.log(sortPercentArray);
+
+		for(var j = 0; j < getdaysInMonth( parseInt(Object.keys(monthDict)[i].split("-")[1]) + 1, Object.keys(monthDict)[i].split("-")[0] ); j++ ){
+			d3.select("#day-" + Object.keys(monthDict)[i]).append("div");
+			console.log(j);
+		}
+	}
 
 
-	for(var mediaIdx = 0; mediaIdx < 17; mediaIdx ++){
+	/*for(var mediaIdx = 0; mediaIdx < 17; mediaIdx ++){
 
-		var mediaName = sortPercentArray[mediaIdx]["mediaName"];
+		var mediaName = getMediaName(mediaIdx);
 		yr = origin_yr;
 		mn = origin_mn;
 		dy = origin_dy;
 
-		var row_contain = d3.select(".container")
-							.append("div")
-							.attr("class", "row-container")
-							.attr("id", "row-container-" + mediaName);
-
-		row_contain.append("div").attr("class", "row " + mediaName);
-
-		row_contain.append("div").attr("class", "row-medianame").text(getMediaNameStr(mediaName));
-
-		row_contain.append("div").attr("class", "row-percent").attr("id", "percent-" + mediaName);
-
-		
 		$("#percent-" + mediaName).text(allMediaDict[mediaName]["percent"]);
 
 		for(var i = 0; i < dayNum; i++){
@@ -80,7 +83,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 			.append("div")
 			.attr("class", "bar-o")
 			.attr("id", mediaName + '-' + date)
-			.attr("onclick", "location.href='" + mediaName + "_page.php'")
+			.attr("onclick", "location.href='sites/" + mediaName + "_page.php'")
 			.style({
 				"width": w.toString() + "%"
 			})
@@ -108,7 +111,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	$(".bar-o").on("mouseleave", function () {
 	    //stuff to do on mouseover
 	    $(this).attr("class", "bar-o");
-	});
+	});*/
 
 })
 
@@ -155,45 +158,6 @@ function getMediaName(idx){
         case 16:
             return "bsweekly";
     }
-}
-
-function getMediaNameStr(str){
-	switch(str){
-		case "udn":
-			return "聯合新聞網";
-		case "appledaily":
-			return "蘋果日報";
-		case "ltn":
-			return "自由時報";
-		case "chinatimes":
-			return "中時電子報";
-		case "cna":
-			return "中央社";
-		case "yahoo":
-			return "Yahoo奇摩新聞";
-		case "ettoday":
-			return "東森新聞雲";
-		case "nownews":
-			return "Nownews";
-		case "setn":
-			return "三立新聞網";
-		case "tvbs":
-			return "TVBS";
-		case "stormmedia":
-			return "風傳媒";
-		case "newtalk":
-			return "新頭殼";
-		case "newslens":
-			return "關鍵評論網";
-		case "pnn":
-			return "公視新聞議題中心";
-		case "cw":
-			return "天下雜誌獨立評論";
-		case "nextmag":
-			return "台灣壹週刊";
-		case "bsweekly":
-			return "商業週刊";
-	}
 }
 
 function transferDate(year, month, day) {

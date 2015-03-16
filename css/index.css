@@ -47,6 +47,7 @@
 	height: 16px;
 	float: left;
 	display: table;
+	cursor: pointer;
 }
 
 .bar-o.hover .bar{
