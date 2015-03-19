@@ -1,6 +1,7 @@
 var allMediaDict = {}
 var monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
+var dayNames = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 
 var origin_yr = 2015;
 var origin_mn = 0;
@@ -53,6 +54,12 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		.append("h2")
 		.text(monthNames[mn_now - 1]);
 
+		var day_row_block = d3.select("#day-" + yr_now + "-" + mn_now).append("div").attr("class", "day-row-block");
+
+		for (var j = 0; j < 7; j++){
+			day_row_block.append("div").attr("class", "day-row").text(dayNames[j]);
+		}
+
 		var date = new Date(mn_now + "/1/" + yr_now);
 		console.log(date);
 		var n = date.getDay();
@@ -78,6 +85,20 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 			else
 				dy_pic = j.toString();
 
+			var dd = "day-" + yr_now + "-" + (mn_now - 1) + "-" + j;
+			console.log(dd);
+			var type;
+
+			if (dd in allMediaDict[mediaName]){
+				type = allMediaDict[mediaName][dd];
+				// console.log(type);
+			}
+
+			else{
+				type = "no-data";
+			}
+			console.log(type);
+
 
 			var image_block = d3.select("#day-" + yr_now + "-" + mn_now)
 								.append("div")
@@ -86,11 +107,15 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 
 			image_block.append("img")
 			.attr("src", "//p.udn.com.tw/upf/newmedia/2015_data/20150318_firewall_pics/" + mediaName + "/" + mediaName + "_" + mn_pic + dy_pic + ".png")
-			.attr("width", "124px");
+			.attr("width", "100%");
+
+			image_block.append("div")
+			.attr("class", "cover " + type);
 
 			image_block.append("div")
 			.attr("class", "day-overlay")
 			.text(dy_pic);
+
 			// console.log(j);
 		}
 	}

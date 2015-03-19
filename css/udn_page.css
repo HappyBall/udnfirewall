@@ -12,11 +12,23 @@ h2{
 	display: table;
 }
 
+.day-row-block{
+	width: 100%;
+	display: table;
+}
+
+.day-row{
+	float: left;
+	width: 13%;
+	margin: 0px 0.8% 0.8% 0px;
+	text-align: center;
+}
+
 .image{
 	float: left;
 	margin: 0px 0.8% 0.8% 0px;
-	width: 126px;
-	height: 95px;
+	width: 13%;
+	height: 105px;
 	display: table;
 	position: relative;
 }
@@ -33,4 +45,38 @@ h2{
 .future{
 	border: 1px solid #EEE;
 	box-sizing: border-box;
+}
+
+.cover{
+	width: 100%;
+	height: 105px;
+	opacity: 0.4;
+	position: absolute;
+	top: 0;
+}
+
+.verdict-1{
+	background-color: #ddd;
+	opacity: 0.8;
+}
+
+.verdict-2{
+	background-color: #45D541;
+}
+
+.verdict-3{
+	background-color: orange;
+}
+
+.verdict-4{
+	background-color: #F1F409;
+}
+
+.verdict-5{
+	background-color: #D60000;
+}
+
+.no-data{
+	background-color: white;
+	opacity: 0.8;
 }
