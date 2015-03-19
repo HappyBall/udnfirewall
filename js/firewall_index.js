@@ -16,9 +16,9 @@ var sortPercentArray = [];
 
 d3.json("data/allMediaDayType.json", function (dataset) {
 	allMediaDict = dataset;
-	// console.log(allMediaDict);
+	// console.log(Object.keys(allMediaDict).length);
 
-	for(var i = 0; i < 17; i++){
+	for(var i = 0; i < Object.keys(allMediaDict).length; i++){
 		var tempDict = {};
 		tempDict["mediaName"] = getMediaName(i);
 		tempDict["percent"] = parseInt(allMediaDict[getMediaName(i)]["percent"]);
@@ -28,10 +28,10 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 
 	sortPercentArray.sort(function(a, b){return b["percent"] - a["percent"]});
 
-	console.log(sortPercentArray);
+	// console.log(sortPercentArray);
 
 
-	for(var mediaIdx = 0; mediaIdx < 17; mediaIdx ++){
+	for(var mediaIdx = 0; mediaIdx < Object.keys(allMediaDict).length; mediaIdx ++){
 
 		var mediaName = sortPercentArray[mediaIdx]["mediaName"];
 		yr = origin_yr;

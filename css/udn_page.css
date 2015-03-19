@@ -1,0 +1,36 @@
+h2{
+	font-size: 20px;
+}
+
+#image-container{
+	width: 74%;
+	display: table;
+	margin: auto;
+}
+
+.month{
+	display: table;
+}
+
+.image{
+	float: left;
+	margin: 0px 0.8% 0.8% 0px;
+	width: 126px;
+	height: 95px;
+	display: table;
+	position: relative;
+}
+
+.day-overlay{
+	color: #6e6e6e;
+	background-color: rgba(255,255,255,0.8);
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 5px;
+}
+
+.future{
+	border: 1px solid #EEE;
+	box-sizing: border-box;
+}
