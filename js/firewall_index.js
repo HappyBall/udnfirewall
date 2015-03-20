@@ -4,7 +4,7 @@ var origin_yr = 2015;
 var origin_mn = 0;
 var origin_dy = 1;
 
-var dayNum = daydiff(transferDate(origin_yr, origin_mn, origin_dy), transferDate(2015, 2, 11)) + 1;
+var dayNum = daydiff(transferDate(origin_yr, origin_mn, origin_dy), nowDate());
 // console.log(dayNum);
 var w = 100/dayNum;
 
@@ -194,6 +194,10 @@ function getMediaNameStr(str){
 		case "bsweekly":
 			return "商業週刊";
 	}
+}
+
+function nowDate(){
+	return new Date();
 }
 
 function transferDate(year, month, day) {

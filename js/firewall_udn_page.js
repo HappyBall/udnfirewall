@@ -7,7 +7,7 @@ var origin_yr = 2015;
 var origin_mn = 0;
 var origin_dy = 1;
 
-var dayNum = daydiff(transferDate(origin_yr, origin_mn, origin_dy), transferDate(2015, 2, 11)) + 1;
+var dayNum = daydiff(transferDate(origin_yr, origin_mn, origin_dy), nowDate());
 // console.log(dayNum);
 var w = 100/dayNum;
 
@@ -18,13 +18,84 @@ var daysInMonthNow = getdaysInMonth(origin_mn + 1, origin_yr);
 var mediaName = "udn";
 
 d3.json("data/allMediaDayType.json", function (dataset) {
+
 	allMediaDict = dataset;
 
-	var allKeys = Object.keys(allMediaDict["udn"]);
+	for(var i = 0; i < dayNum; i++){
+		if(dy > daysInMonthNow){
+			dy = 1;
+			mn += 1;
+			if(mn > 11){
+				mn = 0;
+				yr += 1;
+			}
+			daysInMonthNow = getdaysInMonth(mn + 1, yr);
+		}
+		var date = "day-" + yr.toString() + "-" + mn.toString() + "-" + dy.toString();
+		var date_for_tip = "day-" + yr.toString() + "-" + (mn+1).toString() + "-" + dy.toString();
+		var type;
+		// console.log(date);
+
+		if (date in allMediaDict[mediaName]){
+			type = allMediaDict[mediaName][date];
+			// console.log(type);
+		}
+
+		else{
+			type = "no-data";
+		}
+
+		d3.select("." + mediaName)
+		.append("div")
+		.attr("class", "bar-o")
+		.attr("id", mediaName + '-' + date)
+		.attr("onclick", function(){
+			// var 
+
+			
+		})
+		.style({
+			"width": w.toString() + "%"
+		})
+		.append("div")
+		.attr("class", "bar " + type)
+		.style("height", "6px");
+
+		$("#" + mediaName + '-' + date).simpletip({
+			fixed: true,
+			position: 'top',
+			content: date_for_tip,
+			showEffect: "none",
+			hideEffect: "none"
+		});
+
+		if(i == 1){
+			d3.select("." + mediaName)
+			.append("div")
+			.attr("class", "background-line");
+		}
+
+		dy += 1;
+	}
+
+	$(".bar-o").on("mouseover", function () {
+	    //stuff to do on mouseover
+	    $(this).attr("class", "bar-o hover");
+	});
+
+	$(".bar-o").on("mouseleave", function () {
+	    //stuff to do on mouseover
+	    $(this).attr("class", "bar-o");
+	});
+
+	var allKeys = Object.keys(allMediaDict[mediaName]);
 	var monthDict = {};
 
 	for(var o in allKeys){
 		if(allKeys[o].split("-")[0] != "day"){
+			continue;
+		}
+		else if(parseInt(allKeys[o].split("-")[1]) < 2015){
 			continue;
 		}
 		else if(allKeys[o].split("-")[1] + "-" + allKeys[o].split("-")[2] in monthDict){
@@ -33,7 +104,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		else{
 			monthDict[allKeys[o].split("-")[1] + "-" + allKeys[o].split("-")[2]] = 1;
 		}
-		// console.log(allKeys[o].split("-")[0]);
+		console.log(monthDict);
 	}
 
 	for (var i in Object.keys(monthDict)){
@@ -41,11 +112,11 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		var mn_now = parseInt(Object.keys(monthDict)[i].split("-")[1]) + 1;
 		var yr_now = Object.keys(monthDict)[i].split("-")[0];
 
-		d3.select("#image-container")
+		d3.select("#calendar-container")
 		.append("a")
 		.attr("name", "day-" + yr_now + "-" + mn_now);
 
-		d3.select("#image-container")
+		d3.select("#calendar-container")
 		.append("div")
 		.attr("class", "month")
 		.attr("id", "day-" + yr_now + "-" + mn_now);
@@ -86,7 +157,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 				dy_pic = j.toString();
 
 			var dd = "day-" + yr_now + "-" + (mn_now - 1) + "-" + j;
-			console.log(dd);
+			// console.log(dd);
 			var type;
 
 			if (dd in allMediaDict[mediaName]){
@@ -97,7 +168,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 			else{
 				type = "no-data";
 			}
-			console.log(type);
+			// console.log(type);
 
 
 			var image_block = d3.select("#day-" + yr_now + "-" + mn_now)
@@ -127,72 +198,14 @@ d3.json("data/allMediaDayType.json", function (dataset) {
     	$(this).remove();  
     });
 
-	/*for(var mediaIdx = 0; mediaIdx < 17; mediaIdx ++){
-
-		var mediaName = getMediaName(mediaIdx);
-		yr = origin_yr;
-		mn = origin_mn;
-		dy = origin_dy;
-
-		$("#percent-" + mediaName).text(allMediaDict[mediaName]["percent"]);
-
-		for(var i = 0; i < dayNum; i++){
-			if(dy > daysInMonthNow){
-				dy = 1;
-				mn += 1;
-				if(mn > 11){
-					mn = 0;
-					yr += 1;
-				}
-				daysInMonthNow = getdaysInMonth(mn + 1, yr);
-			}
-			var date = "day-" + yr.toString() + "-" + mn.toString() + "-" + dy.toString();
-			var date_for_tip = "day-" + yr.toString() + "-" + (mn+1).toString() + "-" + dy.toString();
-			var type;
-			// console.log(date);
-
-			if (date in allMediaDict[mediaName]){
-				type = allMediaDict[mediaName][date];
-				// console.log(type);
-			}
-
-			else{
-				type = "no-data";
-			}
-
-			d3.select("." + mediaName)
-			.append("div")
-			.attr("class", "bar-o")
-			.attr("id", mediaName + '-' + date)
-			.attr("onclick", "location.href='sites/" + mediaName + "_page.php'")
-			.style({
-				"width": w.toString() + "%"
-			})
-			.append("div")
-			.attr("class", "bar " + type)
-			.style("height", "6px");
-
-			$("#" + mediaName + '-' + date).simpletip({
-				fixed: true,
-				position: 'top',
-				content: date_for_tip,
-				showEffect: "none",
-				hideEffect: "none"
-			});
-
-			dy += 1;
-		}
-	}
-
-	$(".bar-o").on("mouseover", function () {
-	    //stuff to do on mouseover
-	    $(this).attr("class", "bar-o hover");
+    $(".bar-o").click( function () {
+    	var m = parseInt($(this).attr("id").split("-")[3]) + 1;
+    	var s = $(this).attr("id").split("-")[1] + "-" + $(this).attr("id").split("-")[2] + "-" + m;
+	   	$('html, body').animate({
+			scrollTop: ($("#" + s).offset().top)
+		}, 800);
 	});
 
-	$(".bar-o").on("mouseleave", function () {
-	    //stuff to do on mouseover
-	    $(this).attr("class", "bar-o");
-	});*/
 
 })
 
@@ -239,6 +252,10 @@ function getMediaName(idx){
         case 16:
             return "bsweekly";
     }
+}
+
+function nowDate(){
+	return new Date();
 }
 
 function transferDate(year, month, day) {

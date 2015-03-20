@@ -2,7 +2,49 @@ h2{
 	font-size: 20px;
 }
 
-#image-container{
+.udn{
+	display: table;
+	width: 74%;
+	margin: 100px auto;
+}
+
+.bar{
+	position: relative;
+	top: 5px;
+}
+
+.bar-o{
+	height: 16px;
+	float: left;
+	display: table;
+	cursor: pointer;
+}
+
+.bar-o.hover .bar{
+	background-color: black;
+}
+
+/*.bar-o:first-child .bar{
+	border-left: 1px solid #eee;
+	opacity: 1;
+}*/
+
+/*.background-line{
+	width: 99%;
+	border-top: 1px solid #eee;
+	position: absolute;
+	top: 9px;
+}*/
+
+.tooltip{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 3;
+	display: none;
+}
+
+#calendar-container{
 	width: 74%;
 	display: table;
 	margin: auto;
@@ -10,6 +52,7 @@ h2{
 
 .month{
 	display: table;
+	width: 100%;
 }
 
 .day-row-block{
@@ -19,7 +62,7 @@ h2{
 
 .day-row{
 	float: left;
-	width: 13%;
+	width: 13.2%;
 	margin: 0px 0.8% 0.8% 0px;
 	text-align: center;
 }
@@ -27,7 +70,7 @@ h2{
 .image{
 	float: left;
 	margin: 0px 0.8% 0.8% 0px;
-	width: 13%;
+	width: 13.2%;
 	height: 105px;
 	display: table;
 	position: relative;
