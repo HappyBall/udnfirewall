@@ -116,12 +116,12 @@ h2{
 }
 
 #page-cover-block{
-	width: 45%;
+	width: 60%;
 	background-color: white;
 	position: fixed;
 	z-index: 40010;
 	top: 10%;
-	left: 27.5%;
+	left: 20%;
 	box-sizing: border-box;
 	padding: 30px;
 	border: 1px solid #DDD;
@@ -142,7 +142,7 @@ h2{
 }
 
 .detail-image{
-	max-height: 500px;
+	max-height: 600px;
 	position: relative;
 }
 
