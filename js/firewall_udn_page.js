@@ -1,7 +1,6 @@
 var allMediaDict = {}
-var monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"];
-var dayNames = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+var monthNames = ["一月", "二月", "三月", "四月", "五月", "六月","七月", "八月", "九月", "十月", "十一月", "十二月"];
+var dayNames = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
 
 var origin_yr = 2015;
 var origin_mn = 0;
@@ -49,11 +48,6 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		.append("div")
 		.attr("class", "bar-o")
 		.attr("id", mediaName + '-' + date)
-		.attr("onclick", function(){
-			// var 
-
-			
-		})
 		.style({
 			"width": w.toString() + "%"
 		})
@@ -204,6 +198,59 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	   	$('html, body').animate({
 			scrollTop: ($("#" + s).offset().top)
 		}, 800);
+	});
+
+	$(".image").click(function(){
+
+		var display_str = $(this).attr("id");
+		$(".detail-title").text(display_str);
+
+		var yr_now = parseInt(display_str.split("-")[0]);
+		var mn_now = parseInt(display_str.split("-")[1]);
+		var dy_now = parseInt(display_str.split("-")[2]);
+
+		var mn_pic;
+		var dy_pic;
+
+		if(mn_now < 10) 
+			mn_pic = "0" + mn_now.toString();
+		else 
+			mn_pic = mn_now.toString();
+
+		if(dy_now < 10)
+			dy_pic = "0" + dy_now.toString();
+		else
+			dy_pic = dy_now.toString();
+
+		var dd = "day-" + yr_now + "-" + (mn_now - 1) + "-" + dy_now;
+		// console.log(dd);
+		var type;
+
+		if (dd in allMediaDict[mediaName]){
+			type = allMediaDict[mediaName][dd];
+			// console.log(type);
+		}
+
+		else{
+			type = "no-data";
+		}
+
+		d3.select(".detail-image")
+		.append("img")
+		.attr("src", "//p.udn.com.tw/upf/newmedia/2015_data/20150318_firewall_pics/" + mediaName + "/" + mediaName + "_" + mn_pic + dy_pic + ".png")
+		.attr("width", "100%");
+
+		d3.select(".detail-image")
+		.append("div")
+		.attr("class", "detail-image-cover " + type);
+		
+		$(".page-overlay").css("display", "block");
+	});
+
+	$(".close").click(function(){
+		$(".detail-title").empty();
+		$(".detail-image").empty();
+		$(".page-overlay").css("display", "none");
 	});
 
 
