@@ -38,19 +38,19 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		mn = origin_mn;
 		dy = origin_dy;
 
-		var row_contain = d3.select(".container")
+		var row_contain = d3.select(".image-container")
 							.append("div")
 							.attr("class", "row-container")
 							.attr("id", "row-container-" + mediaName);
 
-		row_contain.append("div").attr("class", "row " + mediaName);
-
 		row_contain.append("div").attr("class", "row-medianame").text(getMediaNameStr(mediaName));
+
+		row_contain.append("div").attr("class", "row " + mediaName);
 
 		row_contain.append("div").attr("class", "row-percent").attr("id", "percent-" + mediaName);
 
-		
-		$("#percent-" + mediaName).text(allMediaDict[mediaName]["percent"]);
+		var percent_length = allMediaDict[mediaName]["percent"].length;
+		$("#percent-" + mediaName).text(allMediaDict[mediaName]["percent"].substr(0, percent_length - 9));
 
 		for(var i = 0; i < dayNum; i++){
 			if(dy > daysInMonthNow){
@@ -63,7 +63,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 				daysInMonthNow = getdaysInMonth(mn + 1, yr);
 			}
 			var date = "day-" + yr.toString() + "-" + mn.toString() + "-" + dy.toString();
-			var date_for_tip = "day-" + yr.toString() + "-" + (mn+1).toString() + "-" + dy.toString();
+			
 			var type;
 			// console.log(date);
 
@@ -75,6 +75,8 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 			else{
 				type = "no-data";
 			}
+
+			var date_for_tip = yr.toString() + "." + (mn+1).toString() + "." + dy.toString() + ' <span class = "tip-' + type + '">' + getTipTypeStr(type) + '</span>'  ;
 
 			d3.select("." + mediaName)
 			.append("div")
@@ -102,12 +104,22 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 
 	$(".bar-o").on("mouseover", function () {
 	    //stuff to do on mouseover
-	    $(this).attr("class", "bar-o hover");
+	    var date_seperate = $(this).attr("id").split("-");
+	    var date = date_seperate[1] + "-" + date_seperate[2] + "-" + date_seperate[3] + "-" + date_seperate[4];
+	    for(var i = 0; i < Object.keys(allMediaDict).length; i++){
+	    	var select = getMediaName(i) + "-" + date;
+	    	$("#" + select).attr("class", "bar-o hover");
+	    }
 	});
 
 	$(".bar-o").on("mouseleave", function () {
 	    //stuff to do on mouseover
-	    $(this).attr("class", "bar-o");
+	    var date_seperate = $(this).attr("id").split("-");
+	    var date = date_seperate[1] + "-" + date_seperate[2] + "-" + date_seperate[3] + "-" + date_seperate[4];
+	    for(var i = 0; i < Object.keys(allMediaDict).length; i++){
+	    	var select = getMediaName(i) + "-" + date;
+	    	$("#" + select).attr("class", "bar-o");
+	    }
 	});
 
 })
@@ -193,6 +205,21 @@ function getMediaNameStr(str){
 			return "台灣壹週刊";
 		case "bsweekly":
 			return "商業週刊";
+	}
+}
+
+function getTipTypeStr(str){
+	switch(str){
+		case "verdict-1":
+			return "無法確定";
+		case "verdict-2":
+			return "沒有被封鎖";
+		case "verdict-3":
+			return "有時被封鎖";
+		case "verdict-5":
+			return "被封鎖";
+		case "no-data":
+			return "無資料";
 	}
 }
 

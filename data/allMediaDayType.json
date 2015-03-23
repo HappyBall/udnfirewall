@@ -1,6 +1,6 @@
 {
   "udn": {
-    "percent": "66% (最近90天) ",
+    "percent": "64% (最近90天) ",
     "day-2015-2-1": "verdict-5",
     "day-2015-2-2": "verdict-3",
     "day-2015-2-3": "verdict-3",
@@ -21,6 +21,9 @@
     "day-2015-2-18": "verdict-5",
     "day-2015-2-19": "verdict-3",
     "day-2015-2-20": "verdict-3",
+    "day-2015-2-21": "verdict-3",
+    "day-2015-2-22": "verdict-5",
+    "day-2015-2-23": "verdict-3",
     "day-2015-1-1": "verdict-3",
     "day-2015-1-2": "verdict-5",
     "day-2015-1-3": "verdict-3",
@@ -93,6 +96,9 @@
     "day-2015-2-18": "verdict-5",
     "day-2015-2-19": "verdict-5",
     "day-2015-2-20": "verdict-5",
+    "day-2015-2-21": "verdict-5",
+    "day-2015-2-22": "verdict-5",
+    "day-2015-2-23": "verdict-5",
     "day-2015-1-1": "verdict-2",
     "day-2015-1-2": "verdict-1",
     "day-2015-1-3": "verdict-5",
@@ -145,13 +151,10 @@
     "day-2015-0-31": "verdict-5",
     "day-2014-11-23": "verdict-5",
     "day-2014-9-6": "verdict-5",
-    "day-2014-9-21": "verdict-5",
-    "day-2014-6-24": "verdict-5",
-    "day-2014-5-6": "verdict-5",
-    "day-2014-5-27": "verdict-5"
+    "day-2014-9-21": "verdict-5"
   },
   "ltn": {
-    "percent": "94% (最近90天) ",
+    "percent": "95% (最近90天) ",
     "day-2015-2-1": "verdict-5",
     "day-2015-2-2": "verdict-5",
     "day-2015-2-3": "verdict-5",
@@ -172,6 +175,9 @@
     "day-2015-2-18": "verdict-5",
     "day-2015-2-19": "verdict-5",
     "day-2015-2-20": "verdict-5",
+    "day-2015-2-21": "verdict-5",
+    "day-2015-2-22": "verdict-5",
+    "day-2015-2-23": "verdict-5",
     "day-2015-1-1": "verdict-5",
     "day-2015-1-2": "verdict-5",
     "day-2015-1-3": "verdict-5",
@@ -226,10 +232,7 @@
     "day-2014-7-26": "verdict-2",
     "day-2014-6-7": "verdict-2",
     "day-2014-5-13": "verdict-2",
-    "day-2014-4-10": "verdict-3",
-    "day-2014-4-19": "verdict-2",
-    "day-2014-4-26": "verdict-5",
-    "day-2014-3-15": "verdict-3"
+    "day-2014-4-26": "verdict-5"
   },
   "chinatimes": {
     "percent": "0% (最近90天) ",
@@ -253,6 +256,9 @@
     "day-2015-2-18": "verdict-3",
     "day-2015-2-19": "verdict-3",
     "day-2015-2-20": "verdict-3",
+    "day-2015-2-21": "verdict-3",
+    "day-2015-2-22": "verdict-3",
+    "day-2015-2-23": "verdict-3",
     "day-2015-1-1": "verdict-3",
     "day-2015-1-2": "verdict-3",
     "day-2015-1-3": "verdict-3",
@@ -303,10 +309,7 @@
     "day-2015-0-29": "verdict-3",
     "day-2015-0-30": "verdict-3",
     "day-2015-0-31": "verdict-3",
-    "day-2014-10-11": "verdict-3",
-    "day-2014-8-16": "verdict-2",
-    "day-2014-7-26": "verdict-2",
-    "day-2014-4-26": "verdict-2"
+    "day-2014-10-11": "verdict-3"
   },
   "cna": {
     "percent": "99% (最近90天) ",
@@ -330,6 +333,9 @@
     "day-2015-2-18": "verdict-5",
     "day-2015-2-19": "verdict-5",
     "day-2015-2-20": "verdict-5",
+    "day-2015-2-21": "verdict-5",
+    "day-2015-2-22": "verdict-5",
+    "day-2015-2-23": "verdict-5",
     "day-2015-1-1": "verdict-5",
     "day-2015-1-2": "verdict-5",
     "day-2015-1-3": "verdict-5",
@@ -383,10 +389,7 @@
     "day-2014-10-21": "verdict-5",
     "day-2014-9-1": "verdict-3",
     "day-2014-9-26": "verdict-5",
-    "day-2014-9-27": "verdict-5",
-    "day-2014-8-9": "verdict-5",
-    "day-2014-5-12": "verdict-5",
-    "day-2014-3-19": "verdict-5"
+    "day-2014-9-27": "verdict-5"
   },
   "yahoo": {
     "percent": "100% (最近90天) ",
@@ -410,6 +413,9 @@
     "day-2015-2-18": "verdict-5",
     "day-2015-2-19": "verdict-5",
     "day-2015-2-20": "verdict-5",
+    "day-2015-2-21": "verdict-5",
+    "day-2015-2-22": "verdict-5",
+    "day-2015-2-23": "verdict-5",
     "day-2015-1-1": "verdict-5",
     "day-2015-1-2": "verdict-5",
     "day-2015-1-3": "verdict-5",
@@ -463,11 +469,8 @@
     "day-2014-8-28": "verdict-3",
     "day-2014-7-27": "verdict-2",
     "day-2014-6-12": "verdict-2",
-    "day-2014-5-5": "verdict-2",
     "day-2014-5-11": "verdict-2",
-    "day-2014-5-24": "verdict-2",
-    "day-2014-4-8": "verdict-2",
-    "day-2014-4-13": "verdict-2"
+    "day-2014-5-24": "verdict-2"
   },
   "ettoday": {
     "percent": "1% (最近90天) ",
@@ -491,6 +494,9 @@
     "day-2015-2-18": "verdict-2",
     "day-2015-2-19": "verdict-2",
     "day-2015-2-20": "verdict-3",
+    "day-2015-2-21": "verdict-2",
+    "day-2015-2-22": "verdict-2",
+    "day-2015-2-23": "verdict-2",
     "day-2015-1-1": "verdict-3",
     "day-2015-1-2": "verdict-3",
     "day-2015-1-3": "verdict-3",
@@ -545,10 +551,7 @@
     "day-2014-7-5": "verdict-2",
     "day-2014-6-21": "verdict-2",
     "day-2014-4-8": "verdict-2",
-    "day-2014-4-30": "verdict-2",
-    "day-2014-2-19": "verdict-2",
-    "day-2014-2-24": "verdict-3",
-    "day-2014-1-5": "verdict-2"
+    "day-2014-4-30": "verdict-2"
   },
   "nownews": {
     "percent": "0% (最近90天) ",
@@ -572,6 +575,9 @@
     "day-2015-2-18": "verdict-2",
     "day-2015-2-19": "verdict-3",
     "day-2015-2-20": "verdict-3",
+    "day-2015-2-21": "verdict-2",
+    "day-2015-2-22": "verdict-2",
+    "day-2015-2-23": "verdict-2",
     "day-2015-1-1": "verdict-3",
     "day-2015-1-2": "verdict-3",
     "day-2015-1-3": "verdict-3",
@@ -628,10 +634,7 @@
     "day-2014-2-24": "verdict-2",
     "day-2014-0-15": "verdict-2",
     "day-2013-11-11": "verdict-2",
-    "day-2013-10-8": "verdict-2",
-    "day-2013-8-16": "verdict-2",
-    "day-2013-7-19": "verdict-2",
-    "day-2013-6-27": "verdict-2"
+    "day-2013-10-8": "verdict-2"
   },
   "setn": {
     "percent": "0% (最近90天) ",
@@ -655,6 +658,9 @@
     "day-2015-2-18": "verdict-2",
     "day-2015-2-19": "verdict-3",
     "day-2015-2-20": "verdict-3",
+    "day-2015-2-21": "verdict-3",
+    "day-2015-2-22": "verdict-2",
+    "day-2015-2-23": "verdict-3",
     "day-2015-1-1": "verdict-3",
     "day-2015-1-2": "verdict-2",
     "day-2015-1-3": "verdict-3",
@@ -706,7 +712,7 @@
     "day-2014-10-11": "verdict-3"
   },
   "tvbs": {
-    "percent": "92% (最近90天) ",
+    "percent": "91% (最近90天) ",
     "day-2015-2-1": "verdict-5",
     "day-2015-2-2": "verdict-5",
     "day-2015-2-3": "verdict-5",
@@ -727,6 +733,9 @@
     "day-2015-2-18": "verdict-5",
     "day-2015-2-19": "verdict-5",
     "day-2015-2-20": "verdict-3",
+    "day-2015-2-21": "verdict-3",
+    "day-2015-2-22": "verdict-5",
+    "day-2015-2-23": "verdict-5",
     "day-2015-1-1": "verdict-5",
     "day-2015-1-2": "verdict-5",
     "day-2015-1-3": "verdict-5",
@@ -798,6 +807,9 @@
     "day-2015-2-18": "verdict-5",
     "day-2015-2-19": "verdict-5",
     "day-2015-2-20": "verdict-5",
+    "day-2015-2-21": "verdict-5",
+    "day-2015-2-22": "verdict-5",
+    "day-2015-2-23": "verdict-5",
     "day-2015-1-1": "verdict-5",
     "day-2015-1-2": "verdict-3",
     "day-2015-1-3": "verdict-5",
@@ -848,7 +860,7 @@
     "day-2015-0-31": "verdict-3"
   },
   "newtalk": {
-    "percent": "100% (最近90天) ",
+    "percent": "99% (最近90天) ",
     "day-2015-2-1": "verdict-5",
     "day-2015-2-2": "verdict-5",
     "day-2015-2-3": "verdict-5",
@@ -869,6 +881,9 @@
     "day-2015-2-18": "verdict-5",
     "day-2015-2-19": "verdict-5",
     "day-2015-2-20": "verdict-5",
+    "day-2015-2-21": "verdict-2",
+    "day-2015-2-22": "verdict-5",
+    "day-2015-2-23": "verdict-5",
     "day-2015-1-1": "verdict-5",
     "day-2015-1-2": "verdict-5",
     "day-2015-1-3": "verdict-5",
@@ -923,13 +938,10 @@
     "day-2014-3-4": "verdict-5",
     "day-2014-3-13": "verdict-5",
     "day-2014-3-14": "verdict-5",
-    "day-2014-0-9": "verdict-5",
-    "day-2014-0-12": "verdict-5",
-    "day-2014-0-15": "verdict-5",
     "day-2014-0-24": "verdict-5"
   },
   "newslens": {
-    "percent": "4% (最近90天) ",
+    "percent": "5% (最近90天) ",
     "day-2015-2-1": "verdict-3",
     "day-2015-2-2": "verdict-3",
     "day-2015-2-3": "verdict-3",
@@ -950,6 +962,9 @@
     "day-2015-2-18": "verdict-3",
     "day-2015-2-19": "verdict-3",
     "day-2015-2-20": "verdict-5",
+    "day-2015-2-21": "verdict-3",
+    "day-2015-2-22": "verdict-5",
+    "day-2015-2-23": "verdict-3",
     "day-2015-1-1": "verdict-3",
     "day-2015-1-2": "verdict-3",
     "day-2015-1-3": "verdict-3",
@@ -1024,6 +1039,9 @@
     "day-2015-2-18": "verdict-1",
     "day-2015-2-19": "verdict-1",
     "day-2015-2-20": "verdict-1",
+    "day-2015-2-21": "verdict-1",
+    "day-2015-2-22": "verdict-1",
+    "day-2015-2-23": "verdict-1",
     "day-2015-1-1": "verdict-1",
     "day-2015-1-2": "verdict-1",
     "day-2015-1-3": "verdict-1",
@@ -1079,10 +1097,7 @@
     "day-2014-1-15": "verdict-1",
     "day-2014-0-9": "verdict-1",
     "day-2013-11-7": "verdict-1",
-    "day-2013-10-4": "verdict-5",
-    "day-2013-8-5": "verdict-5",
-    "day-2013-7-10": "verdict-5",
-    "day-2013-6-19": "verdict-5"
+    "day-2013-10-4": "verdict-5"
   },
   "cw": {
     "percent": "99% (最近90天) ",
@@ -1106,6 +1121,9 @@
     "day-2015-2-18": "verdict-5",
     "day-2015-2-19": "verdict-5",
     "day-2015-2-20": "verdict-5",
+    "day-2015-2-21": "verdict-5",
+    "day-2015-2-22": "verdict-5",
+    "day-2015-2-23": "verdict-5",
     "day-2015-1-1": "verdict-5",
     "day-2015-1-2": "verdict-5",
     "day-2015-1-3": "verdict-5",
@@ -1156,7 +1174,7 @@
     "day-2015-0-31": "verdict-5"
   },
   "nextmag": {
-    "percent": "90% (最近90天) ",
+    "percent": "89% (最近90天) ",
     "day-2015-2-1": "verdict-5",
     "day-2015-2-2": "verdict-5",
     "day-2015-2-3": "verdict-5",
@@ -1177,6 +1195,9 @@
     "day-2015-2-18": "verdict-5",
     "day-2015-2-19": "verdict-5",
     "day-2015-2-20": "verdict-5",
+    "day-2015-2-21": "verdict-5",
+    "day-2015-2-22": "verdict-5",
+    "day-2015-2-23": "verdict-3",
     "day-2015-1-1": "verdict-3",
     "day-2015-1-2": "verdict-5",
     "day-2015-1-3": "verdict-5",
@@ -1247,6 +1268,9 @@
     "day-2015-2-18": "verdict-3",
     "day-2015-2-19": "verdict-3",
     "day-2015-2-20": "verdict-3",
+    "day-2015-2-21": "verdict-3",
+    "day-2015-2-22": "verdict-2",
+    "day-2015-2-23": "verdict-3",
     "day-2015-1-1": "verdict-3",
     "day-2015-1-2": "verdict-2",
     "day-2015-1-3": "verdict-3",
@@ -1303,9 +1327,6 @@
     "day-2014-1-16": "verdict-2",
     "day-2014-0-10": "verdict-2",
     "day-2013-11-8": "verdict-2",
-    "day-2013-10-4": "verdict-2",
-    "day-2013-8-6": "verdict-2",
-    "day-2013-7-11": "verdict-2",
-    "day-2013-6-20": "verdict-2"
+    "day-2013-10-4": "verdict-2"
   }
 }

@@ -5,12 +5,24 @@
 	max-width: 1056px;
 }
 
+.image-container{
+	display: table;
+	margin: auto;
+	width: 100%;
+	max-width: 1056px;
+}
+
 .tooltip{
 	position: absolute;
 	top: 0;
 	left: 0;
 	z-index: 3;
 	display: none;
+	border: 1px solid;
+	border-radius: 3px;
+	background-color: white;
+	padding: 5px 5px 5px 5px;
+	font-family: defFont;
 }
 
 .row-container{
@@ -24,18 +36,21 @@
 	display: table;
 	width: 80%;
 	float: left;
+	margin-left: 20px;
 }
 
 .row-medianame{
 	display: table;
 	float: left;
-	width: 80px;
+	width: 128px;
+	font-family: defFont;
 }
 
 .row-percent{
 	display: table;
 	float: left;
-	margin-left: 10px;
+	margin-left: 20px;
+	font-family: Arial;
 }
 
 .bar{
@@ -51,11 +66,50 @@
 }
 
 .bar-o.hover .bar{
+	/*background-color: black;*/
+	height: 10px !important;
+	top: 3px;
+}
+
+.bar-o.hover .no-data{
 	background-color: black;
 }
 
+.bar-o:last-child{
+	margin-left: 2.4%;
+	width: 6px !important;
+}
+
+.bar-o:last-child .bar{
+	border-radius: 3px;
+}
+
+.tip-verdict-1{
+	color: #b5b5b5;
+}
+
+.tip-verdict-2{
+	color: #45D541;
+}
+
+.tip-verdict-3{
+	color: orange;
+}
+
+.tip-verdict-4{
+	color: #F1F409;
+}
+
+.tip-verdict-5{
+	color: #D60000;
+}
+
+.tip-no-data{
+	color: #b5b5b5;
+}
+
 .verdict-1{
-	background-color: #eee;
+	background-color: #b5b5b5;
 }
 
 .verdict-2{
@@ -72,4 +126,14 @@
 
 .verdict-5{
 	background-color: #D60000;
+}
+
+@font-face {
+  font-family: defFont;
+  src: url(ARHeiB5Light.OTF);
+}
+
+@font-face{
+  font-family: defFontB;
+  src: url(ARHeiB5Bold.OTF);
 }
