@@ -76,7 +76,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 				type = "no-data";
 			}
 
-			var date_for_tip = yr.toString() + "." + (mn+1).toString() + "." + dy.toString() + ' <span class = "tip-' + type + '">' + getTipTypeStr(type) + '</span>'  ;
+			var date_for_tip = yr.toString() + "." + (mn+1).toString() + "." + dy.toString() + ' <span class = "text-' + type + '">' + getTipTypeStr(type) + '</span>'  ;
 
 			var create_bar_o = d3.select("." + mediaName)
 								.append("div")
@@ -121,7 +121,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	start_line_block.append("div").attr("class", "vertical-line");
 	start_line_block.append("div").attr("class", "vertical-label").text("2015.1.12");
 
-	var feb_left = ((75*20)/dayNum + 13.8) + "%";
+	var feb_left = ((75*20)/dayNum + 13.9) + "%";
 
 	var feb_line_block = d3.select(".image-container")
 							.append("div")

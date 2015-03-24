@@ -5,13 +5,36 @@
 	max-width: 1056px;
 }
 
+.image-labels-block{
+	display: table;
+	margin-left: 6%;
+}
+
+.status{
+	float: left;
+	font-family: defFont;
+	font-size: 14px;
+	margin: 0 10px 0;
+}
+
+.square{
+	width: 8px;
+	height: 8px;
+	margin: 0 5px 1px 5px;
+	display: inline-block;
+}
+
+.text{
+	display: inline;
+}
+
 .image-container{
 	display: table;
 	margin: auto;
 	width: 100%;
 	max-width: 1056px;
 	position: relative;
-	margin-top: 20px;
+	margin-top: 50px;
 }
 
 .tooltip{
@@ -107,27 +130,27 @@
 	border-radius: 3px;
 }*/
 
-.tip-verdict-1{
+.text-verdict-1{
 	color: #b5b5b5;
 }
 
-.tip-verdict-2{
+.text-verdict-2{
 	color: #45D541;
 }
 
-.tip-verdict-3{
+.text-verdict-3{
 	color: orange;
 }
 
-.tip-verdict-4{
+.text-verdict-4{
 	color: #F1F409;
 }
 
-.tip-verdict-5{
+.text-verdict-5{
 	color: #D60000;
 }
 
-.tip-no-data{
+.text-no-data{
 	color: #b5b5b5;
 }
 
@@ -153,10 +176,10 @@
 
 @font-face {
   font-family: defFont;
-  src: url(ARHeiB5Light.OTF);
+  src: url(ARHeiB5Light.otf);
 }
 
 @font-face{
   font-family: defFontB;
-  src: url(ARHeiB5Bold.OTF);
+  src: url(ARHeiB5Bold.otf);
 }
