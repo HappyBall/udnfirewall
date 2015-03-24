@@ -2,7 +2,7 @@ var allMediaDict = {}
 
 var origin_yr = 2015;
 var origin_mn = 0;
-var origin_dy = 1;
+var origin_dy = 12;
 
 var dayNum = daydiff(transferDate(origin_yr, origin_mn, origin_dy), nowDate());
 // console.log(dayNum);
@@ -78,32 +78,85 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 
 			var date_for_tip = yr.toString() + "." + (mn+1).toString() + "." + dy.toString() + ' <span class = "tip-' + type + '">' + getTipTypeStr(type) + '</span>'  ;
 
-			d3.select("." + mediaName)
-			.append("div")
-			.attr("class", "bar-o")
-			.attr("id", mediaName + '-' + date)
-			.attr("onclick", "location.href='" + mediaName + "_page.php#day-" + yr.toString() + "-" + (mn+1).toString() + "'")
-			.style({
-				"width": w.toString() + "%"
-			})
-			.append("div")
+			var create_bar_o = d3.select("." + mediaName)
+								.append("div")
+								.attr("class", "bar-o")
+								.attr("id", mediaName + '-' + date)
+								.attr("onclick", "location.href='" + mediaName + "_page.php#day-" + yr.toString() + "-" + (mn+1).toString() + "'")
+								.style({
+									"width": w.toString() + "%"
+								});
+			create_bar_o.append("div")
 			.attr("class", "bar " + type)
 			.style("height", "6px");
 
-			$("#" + mediaName + '-' + date).simpletip({
+			create_bar_o.append("div")
+			.attr("class", "tooltip")
+			.attr("id", mediaName + '-' + date + "-tip")
+			.html(date_for_tip)
+			.style("width", getTipWidth(type))
+			.style("left", "-" + parseInt(getTipWidth(type))/2 + "px");
+
+			// console.log(parseInt(getTipWidth(type)));
+			/*$("#" + mediaName + '-' + date).simpletip({
 				fixed: true,
 				position: 'top',
 				content: date_for_tip,
 				showEffect: "none",
 				hideEffect: "none"
-			});
+				// offset:[-330,-183]
+			});*/
+			
 
 			dy += 1;
 		}
 	}
 
+	var start_line_block = d3.select(".image-container")
+							.append("div")
+							.attr("class", "vertical-line-block")
+							.attr("id", "start-line-block")
+							.style("left", "14%");
+
+	start_line_block.append("div").attr("class", "vertical-line");
+	start_line_block.append("div").attr("class", "vertical-label").text("2015.1.12");
+
+	var feb_left = ((74*20)/dayNum + 14.2) + "%";
+
+	var feb_line_block = d3.select(".image-container")
+							.append("div")
+							.attr("class", "vertical-line-block")
+							.attr("id", "feb-line-block")
+							.style("left", feb_left);
+	
+	feb_line_block.append("div").attr("class", "vertical-line");
+	feb_line_block.append("div").attr("class", "vertical-label").text("2015.2.1");	
+
+	var mar_left = ((74*48)/dayNum + 14.4) + "%";
+
+	var mar_line_block = d3.select(".image-container")
+							.append("div")
+							.attr("class", "vertical-line-block")
+							.attr("id", "mar-line-block")
+							.style("left", mar_left);
+	
+	mar_line_block.append("div").attr("class", "vertical-line");
+	mar_line_block.append("div").attr("class", "vertical-label").text("2015.3.1");
+
+	var end_line_block = d3.select(".image-container")
+							.append("div")
+							.attr("class", "vertical-line-block")
+							.attr("id", "end-line-block")
+							.style("left", "88%");
+
+	end_line_block.append("div").attr("class", "vertical-line");
+	end_line_block.append("div").attr("class", "vertical-label").text("end");
+
 	$(".bar-o").on("mouseover", function () {
 	    //stuff to do on mouseover
+	    var this_id = $(this).attr("id");
+	    $("#" + this_id + "-tip").css("display", "table");
+
 	    var date_seperate = $(this).attr("id").split("-");
 	    var date = date_seperate[1] + "-" + date_seperate[2] + "-" + date_seperate[3] + "-" + date_seperate[4];
 	    for(var i = 0; i < Object.keys(allMediaDict).length; i++){
@@ -114,6 +167,9 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 
 	$(".bar-o").on("mouseleave", function () {
 	    //stuff to do on mouseover
+	    var this_id = $(this).attr("id");
+	    $("#" + this_id + "-tip").css("display", "none");
+
 	    var date_seperate = $(this).attr("id").split("-");
 	    var date = date_seperate[1] + "-" + date_seperate[2] + "-" + date_seperate[3] + "-" + date_seperate[4];
 	    for(var i = 0; i < Object.keys(allMediaDict).length; i++){
@@ -222,6 +278,22 @@ function getTipTypeStr(str){
 			return "無資料";
 	}
 }
+
+function getTipWidth(str){
+	switch(str){
+		case "verdict-1":
+			return "108px";
+		case "verdict-2":
+			return "120px";
+		case "verdict-3":
+			return "120px";
+		case "verdict-5":
+			return "96px";
+		case "no-data":
+			return "96px";
+	}
+}
+
 
 function nowDate(){
 	return new Date();

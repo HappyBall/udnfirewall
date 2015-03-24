@@ -89,6 +89,7 @@ h2{
 .future{
 	border: 1px solid #EEE;
 	box-sizing: border-box;
+	pointer-events: none;
 }
 
 .cover{

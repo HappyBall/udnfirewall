@@ -4,7 +4,7 @@ var dayNames = ["星期日", "星期一", "星期二", "星期三", "星期四",
 
 var origin_yr = 2015;
 var origin_mn = 0;
-var origin_dy = 1;
+var origin_dy = 12;
 
 var dayNum = daydiff(transferDate(origin_yr, origin_mn, origin_dy), nowDate());
 // console.log(dayNum);
@@ -135,7 +135,10 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 			.attr("class", "image");
 		}
 
-		for(var j = 1; j <= getdaysInMonth( mn_now, yr_now ); j++ ){
+		var daysBegin = 1;
+		if(mn_now == 1) daysBegin = 12;
+
+		for(var j = daysBegin; j <= getdaysInMonth( mn_now, yr_now ); j++ ){
 
 			var mn_pic;
 			var dy_pic;
@@ -173,7 +176,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 			image_block.append("img")
 			.attr("src", "//p.udn.com.tw/upf/newmedia/2015_data/20150318_firewall_pics/" + mediaName + "/" + mediaName + "_" + mn_pic + dy_pic + ".png")
 			.attr("width", "100%");
-
+			
 			image_block.append("div")
 			.attr("class", "cover " + type);
 

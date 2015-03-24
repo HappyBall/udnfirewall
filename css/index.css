@@ -10,19 +10,22 @@
 	margin: auto;
 	width: 100%;
 	max-width: 1056px;
+	position: relative;
+	margin-top: 20px;
 }
 
 .tooltip{
 	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 3;
+	top: -25px;
+	/*left: 0;*/
+	z-index: 20;
 	display: none;
-	border: 1px solid;
+	border: 1px solid #a0a0a0;
 	border-radius: 3px;
 	background-color: white;
 	padding: 5px 5px 5px 5px;
 	font-family: defFont;
+	font-size: 12px;
 }
 
 .row-container{
@@ -63,6 +66,7 @@
 	float: left;
 	display: table;
 	cursor: pointer;
+	position: relative;
 }
 
 .bar-o.hover .bar{
@@ -75,14 +79,33 @@
 	background-color: black;
 }
 
-.bar-o:last-child{
+.vertical-line-block{
+	position: absolute;
+	top: 0;
+	pointer-events: none;
+	z-index: 10;
+}
+
+.vertical-line{
+	border-left: 1px solid #a0a0a0;
+	height: 665px;
+}
+
+.vertical-label{
+	font-family: Arial;
+	font-size: 14px;
+	position: absolute;
+	top: -20px;
+	left: -35px;
+}
+/*.bar-o:last-child{
 	margin-left: 2.4%;
 	width: 6px !important;
 }
 
 .bar-o:last-child .bar{
 	border-radius: 3px;
-}
+}*/
 
 .tip-verdict-1{
 	color: #b5b5b5;
