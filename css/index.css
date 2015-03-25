@@ -17,7 +17,7 @@ body{
 }
 
 .title{
-	font-size: 130px;
+	font-size: 90px;
 	font-family: 微軟正黑體;
 	font-weight: bold;
 	margin-top: 100px;
@@ -180,26 +180,32 @@ body{
 
 .text-verdict-1{
 	color: #b5b5b5;
+	font-family: 微軟正黑體;
 }
 
 .text-verdict-2{
 	color: #45D541;
+	font-family: 微軟正黑體;
 }
 
 .text-verdict-3{
 	color: orange;
+	font-family: 微軟正黑體;
 }
 
 .text-verdict-4{
 	color: #F1F409;
+	font-family: 微軟正黑體;
 }
 
 .text-verdict-5{
 	color: #D60000;
+	font-family: 微軟正黑體;
 }
 
 .text-no-data{
 	color: #b5b5b5;
+	font-family: 微軟正黑體;
 }
 
 .verdict-1{

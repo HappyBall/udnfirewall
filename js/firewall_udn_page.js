@@ -19,6 +19,8 @@ var mediaName = "udn";
 d3.json("data/allMediaDayType.json", function (dataset) {
 
 	allMediaDict = dataset;
+	var blocked_num = 0;
+	var all_detect = 0;
 
 	for(var i = 0; i < dayNum; i++){
 		if(dy > daysInMonthNow){
@@ -31,54 +33,96 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 			daysInMonthNow = getdaysInMonth(mn + 1, yr);
 		}
 		var date = "day-" + yr.toString() + "-" + mn.toString() + "-" + dy.toString();
-		var date_for_tip = "day-" + yr.toString() + "-" + (mn+1).toString() + "-" + dy.toString();
+		// var date_for_tip = "day-" + yr.toString() + "-" + (mn+1).toString() + "-" + dy.toString();
 		var type;
 		// console.log(date);
 
 		if (date in allMediaDict[mediaName]){
 			type = allMediaDict[mediaName][date];
 			// console.log(type);
+			if (type == "verdict-5") blocked_num += 1;
+			if (type != "verdict-1") all_detect += 1;
 		}
 
 		else{
 			type = "no-data";
 		}
 
-		d3.select("." + mediaName)
-		.append("div")
-		.attr("class", "bar-o")
-		.attr("id", mediaName + '-' + date)
-		.style({
-			"width": w.toString() + "%"
-		})
-		.append("div")
+		var date_for_tip = yr.toString() + "." + (mn+1).toString() + "." + dy.toString() + ' <span class = "text-' + type + '">' + getTipTypeStr(type) + '</span>'  ;
+
+		var create_bar_o = d3.select(".row")
+							.append("div")
+							.attr("class", "bar-o")
+							.attr("id", mediaName + '-' + date)
+							.attr("onclick", "location.href='" + mediaName + "_page.php#day-" + yr.toString() + "-" + (mn+1).toString() + "'")
+							.style({
+								"width": w.toString() + "%"
+							});
+		create_bar_o.append("div")
 		.attr("class", "bar " + type)
 		.style("height", "6px");
 
-		$("#" + mediaName + '-' + date).simpletip({
-			fixed: true,
-			position: 'top',
-			content: date_for_tip,
-			showEffect: "none",
-			hideEffect: "none"
-		});
+		create_bar_o.append("div")
+		.attr("class", "tooltip")
+		.attr("id", mediaName + '-' + date + "-tip")
+		.html(date_for_tip)
+		.style("width", getTipWidth(type))
+		.style("left", "-" + parseInt(getTipWidth(type))/2 + "px");
 
-		if(i == 1){
+		/*if(i == 1){
 			d3.select("." + mediaName)
 			.append("div")
 			.attr("class", "background-line");
-		}
+		}*/
 
 		dy += 1;
 	}
 
+	if(all_detect == 0) all_detect = 1;
+	$(".row-percent").text(Math.round((blocked_num/all_detect)*100) + "%");
+
+	var start_line_block = d3.select(".row")
+							.append("div")
+							.attr("class", "vertical-line-block")
+							.attr("id", "start-line-block")
+							.style("left", "0%");
+
+	start_line_block.append("div").attr("class", "vertical-line");
+	start_line_block.append("div").attr("class", "vertical-label").text("2015.1.12");
+
+	var feb_left = ((93*20)/dayNum ) + "%";
+
+	var feb_line_block = d3.select(".row")
+							.append("div")
+							.attr("class", "vertical-line-block")
+							.attr("id", "feb-line-block")
+							.style("left", feb_left);
+	
+	feb_line_block.append("div").attr("class", "vertical-line");
+	feb_line_block.append("div").attr("class", "vertical-label").text("2015.2.1");	
+
+	var mar_left = ((93*48)/dayNum - 0.1) + "%";
+
+	var mar_line_block = d3.select(".row")
+							.append("div")
+							.attr("class", "vertical-line-block")
+							.attr("id", "mar-line-block")
+							.style("left", mar_left);
+	
+	mar_line_block.append("div").attr("class", "vertical-line");
+	mar_line_block.append("div").attr("class", "vertical-label").text("2015.3.1");
+
 	$(".bar-o").on("mouseover", function () {
 	    //stuff to do on mouseover
+	    var this_id = $(this).attr("id");
+	    $("#" + this_id + "-tip").css("display", "table");
 	    $(this).attr("class", "bar-o hover");
 	});
 
 	$(".bar-o").on("mouseleave", function () {
 	    //stuff to do on mouseover
+	    var this_id = $(this).attr("id");
+	    $("#" + this_id + "-tip").css("display", "none");
 	    $(this).attr("class", "bar-o");
 	});
 
@@ -116,7 +160,8 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		.attr("id", "day-" + yr_now + "-" + mn_now);
 
 		d3.select("#day-" + yr_now + "-" + mn_now)
-		.append("h2")
+		.append("div")
+		.attr("class", "month-name")
 		.text(monthNames[mn_now - 1]);
 
 		var day_row_block = d3.select("#day-" + yr_now + "-" + mn_now).append("div").attr("class", "day-row-block");
@@ -205,12 +250,14 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 
 	$(".image").click(function(){
 
-		var display_str = $(this).attr("id");
-		$(".detail-title").text(display_str);
+		var this_id = $(this).attr("id");
+		
 
-		var yr_now = parseInt(display_str.split("-")[0]);
-		var mn_now = parseInt(display_str.split("-")[1]);
-		var dy_now = parseInt(display_str.split("-")[2]);
+		var yr_now = parseInt(this_id.split("-")[0]);
+		var mn_now = parseInt(this_id.split("-")[1]);
+		var dy_now = parseInt(this_id.split("-")[2]);
+
+
 
 		var mn_pic;
 		var dy_pic;
@@ -237,6 +284,9 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		else{
 			type = "no-data";
 		}
+
+		var display_str = yr_now + "." + mn_now + "." + dy_now + '&nbsp;&nbsp; <span class = "text-' + type + '">' + getTipTypeStr(type) + '</span>'  ;
+		$(".detail-title").html(display_str);
 
 		d3.select(".detail-image")
 		.append("img")
@@ -302,6 +352,36 @@ function getMediaName(idx){
         case 16:
             return "bsweekly";
     }
+}
+
+function getTipTypeStr(str){
+	switch(str){
+		case "verdict-1":
+			return "無法確定";
+		case "verdict-2":
+			return "正常連線";
+		case "verdict-3":
+			return "部分封鎖";
+		case "verdict-5":
+			return "封鎖";
+		case "no-data":
+			return "無資料";
+	}
+}
+
+function getTipWidth(str){
+	switch(str){
+		case "verdict-1":
+			return "140px";
+		case "verdict-2":
+			return "140px";
+		case "verdict-3":
+			return "140px";
+		case "verdict-5":
+			return "108px";
+		case "no-data":
+			return "124px";
+	}
 }
 
 function nowDate(){
