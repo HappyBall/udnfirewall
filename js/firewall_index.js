@@ -33,6 +33,9 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 
 	for(var mediaIdx = 0; mediaIdx < Object.keys(allMediaDict).length; mediaIdx ++){
 
+		var blocked_num = 0;
+		var all_detect = 0;
+
 		var mediaName = sortPercentArray[mediaIdx]["mediaName"];
 		yr = origin_yr;
 		mn = origin_mn;
@@ -49,8 +52,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 
 		row_contain.append("div").attr("class", "row-percent").attr("id", "percent-" + mediaName);
 
-		var percent_length = allMediaDict[mediaName]["percent"].length;
-		$("#percent-" + mediaName).text(allMediaDict[mediaName]["percent"].substr(0, percent_length - 9));
+		
 
 		for(var i = 0; i < dayNum; i++){
 			if(dy > daysInMonthNow){
@@ -70,6 +72,8 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 			if (date in allMediaDict[mediaName]){
 				type = allMediaDict[mediaName][date];
 				// console.log(type);
+				if (type == "verdict-5") blocked_num += 1;
+				if (type != "verdict-1") all_detect += 1;
 			}
 
 			else{
@@ -110,18 +114,21 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 
 			dy += 1;
 		}
+
+		if(all_detect == 0) all_detect = 1;
+		$("#percent-" + mediaName).text(Math.round((blocked_num/all_detect)*100) + "%");
 	}
 
 	var start_line_block = d3.select(".image-container")
 							.append("div")
 							.attr("class", "vertical-line-block")
 							.attr("id", "start-line-block")
-							.style("left", "14%");
+							.style("left", "15%");
 
 	start_line_block.append("div").attr("class", "vertical-line");
 	start_line_block.append("div").attr("class", "vertical-label").text("2015.1.12");
 
-	var feb_left = ((75*20)/dayNum + 13.9) + "%";
+	var feb_left = ((72*20)/dayNum + 15.1) + "%";
 
 	var feb_line_block = d3.select(".image-container")
 							.append("div")
@@ -132,7 +139,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	feb_line_block.append("div").attr("class", "vertical-line");
 	feb_line_block.append("div").attr("class", "vertical-label").text("2015.2.1");	
 
-	var mar_left = ((75*48)/dayNum + 13.8) + "%";
+	var mar_left = ((72*48)/dayNum + 15.2) + "%";
 
 	var mar_line_block = d3.select(".image-container")
 							.append("div")
@@ -143,14 +150,6 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	mar_line_block.append("div").attr("class", "vertical-line");
 	mar_line_block.append("div").attr("class", "vertical-label").text("2015.3.1");
 
-	var end_line_block = d3.select(".image-container")
-							.append("div")
-							.attr("class", "vertical-line-block")
-							.attr("id", "end-line-block")
-							.style("left", "89%");
-
-	end_line_block.append("div").attr("class", "vertical-line");
-	end_line_block.append("div").attr("class", "vertical-label").text("end");
 
 	$(".bar-o").on("mouseover", function () {
 	    //stuff to do on mouseover
@@ -269,11 +268,11 @@ function getTipTypeStr(str){
 		case "verdict-1":
 			return "無法確定";
 		case "verdict-2":
-			return "沒有被封鎖";
+			return "正常連線";
 		case "verdict-3":
-			return "有時被封鎖";
+			return "部分封鎖";
 		case "verdict-5":
-			return "被封鎖";
+			return "封鎖";
 		case "no-data":
 			return "無資料";
 	}
@@ -282,15 +281,15 @@ function getTipTypeStr(str){
 function getTipWidth(str){
 	switch(str){
 		case "verdict-1":
-			return "108px";
+			return "140px";
 		case "verdict-2":
-			return "120px";
+			return "140px";
 		case "verdict-3":
-			return "120px";
+			return "140px";
 		case "verdict-5":
-			return "96px";
+			return "108px";
 		case "no-data":
-			return "96px";
+			return "124px";
 	}
 }
 
