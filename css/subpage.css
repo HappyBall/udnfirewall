@@ -218,6 +218,43 @@ body{
 	height: 18px;
 }
 
+.left-nav{
+	width: 20%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	opacity: 0.5;
+}
+
+.right-nav{
+	width: 20%;
+	height: 100%;
+	top: 0;
+	left: 80%;
+	position: fixed;
+	opacity: 0.5;
+}
+
+.nav-label{
+	position: absolute;
+	top: 40%;
+	height: 40px;
+	width: 40px;
+}
+
+.left-nav .nav-label{
+	background: url(/img/left.png) no-repeat;
+	background-size: 40px;
+	right: 15%;
+}
+
+.right-nav .nav-label{
+	background: url(/img/right.png) no-repeat;
+	background-size: 40px;
+	left: 15%;
+}
+
 .vertical-line-block{
 	position: absolute;
 	top: -16px;
