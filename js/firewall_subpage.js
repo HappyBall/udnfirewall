@@ -6,7 +6,11 @@ var origin_yr = 2015;
 var origin_mn = 0;
 var origin_dy = 12;
 
-var dayNum = daydiff(transferDate(origin_yr, origin_mn, origin_dy), nowDate());
+var terminate_yr = 2015;
+var terminate_mn = 3;
+var terminate_dy = 6;
+
+var dayNum = daydiff(transferDate(origin_yr, origin_mn, origin_dy), transferDate(terminate_yr, terminate_mn, terminate_dy)) + 1;
 // console.log(dayNum);
 var w = 100/dayNum;
 
@@ -14,7 +18,21 @@ var yr = origin_yr;
 var mn = origin_mn;
 var dy = origin_dy;
 var daysInMonthNow = getdaysInMonth(origin_mn + 1, origin_yr);
-var mediaName = "udn";
+var mediaName = "";
+
+var query = window.location.search;
+// Skip the leading ?, which should always be there, 
+// but be careful anyway
+if (query.substring(0, 1) == '?') {
+  mediaName = query.substring(1);
+}
+
+else
+	mediaName = "udn";
+
+// console.log(mediaName);
+
+$(".title").text(getMediaNameStr(mediaName));
 
 d3.json("data/allMediaDayType.json", function (dataset) {
 
@@ -54,7 +72,6 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 							.append("div")
 							.attr("class", "bar-o")
 							.attr("id", mediaName + '-' + date)
-							.attr("onclick", "location.href='" + mediaName + "_page.php#day-" + yr.toString() + "-" + (mn+1).toString() + "'")
 							.style({
 								"width": w.toString() + "%"
 							});
@@ -112,6 +129,12 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	mar_line_block.append("div").attr("class", "vertical-line");
 	mar_line_block.append("div").attr("class", "vertical-label").text("2015.3.1");
 
+	d3.select(".row")
+	.append("div")
+	.attr("class", "vertical-line-block")
+	.attr("id", "percent-label")
+	.text("封鎖百分比");
+
 	$(".bar-o").on("mouseover", function () {
 	    //stuff to do on mouseover
 	    var this_id = $(this).attr("id");
@@ -142,7 +165,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		else{
 			monthDict[allKeys[o].split("-")[1] + "-" + allKeys[o].split("-")[2]] = 1;
 		}
-		console.log(monthDict);
+		// console.log(monthDict);
 	}
 
 	for (var i in Object.keys(monthDict)){
@@ -150,14 +173,14 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		var mn_now = parseInt(Object.keys(monthDict)[i].split("-")[1]) + 1;
 		var yr_now = Object.keys(monthDict)[i].split("-")[0];
 
-		d3.select("#calendar-container")
+		/*d3.select("#calendar-container")
 		.append("a")
 		.attr("name", "day-" + yr_now + "-" + mn_now);
 
 		d3.select("#calendar-container")
 		.append("div")
 		.attr("class", "month")
-		.attr("id", "day-" + yr_now + "-" + mn_now);
+		.attr("id", "day-" + yr_now + "-" + mn_now);*/
 
 		d3.select("#day-" + yr_now + "-" + mn_now)
 		.append("div")
@@ -171,7 +194,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		}
 
 		var date = new Date(mn_now + "/1/" + yr_now);
-		console.log(date);
+		// console.log(date);
 		var n = date.getDay();
 
 		for(var k = 0; k < n; k++){
@@ -181,9 +204,11 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		}
 
 		var daysBegin = 1;
-		if(mn_now == 1) daysBegin = 12;
+		if(mn_now == (origin_mn + 1)) daysBegin = origin_dy;
+		var daysEnd = getdaysInMonth( mn_now, yr_now );
+		if(mn_now == (terminate_mn + 1)) daysEnd = terminate_dy;
 
-		for(var j = daysBegin; j <= getdaysInMonth( mn_now, yr_now ); j++ ){
+		for(var j = daysBegin; j <= daysEnd; j++ ){
 
 			var mn_pic;
 			var dy_pic;
@@ -236,8 +261,10 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	$("img")
 	.load(function() { console.log("image loaded correctly"); })
     .error(function() { 
-    	$(this).parent().attr("class", "image future");  
-    	$(this).remove();  
+    	// $(this).parent().attr("class", "image future");  
+    	// console.log($(this));
+    	$(this).attr("src", "/img/nopic.jpg")
+    			.attr("id", "no-pic");  
     });
 
     $(".bar-o").click( function () {
@@ -251,13 +278,15 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	$(".image").click(function(){
 
 		var this_id = $(this).attr("id");
-		
+		// console.log(this_id);
 
 		var yr_now = parseInt(this_id.split("-")[0]);
 		var mn_now = parseInt(this_id.split("-")[1]);
 		var dy_now = parseInt(this_id.split("-")[2]);
 
-
+		var days_inMon = getdaysInMonth(mn_now,yr_now);
+		var dd_left = "";
+		var dd_right = "";
 
 		var mn_pic;
 		var dy_pic;
@@ -285,12 +314,49 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 			type = "no-data";
 		}
 
+		if(mn_now == (origin_mn + 1) && dy_now == origin_dy)
+			$("#left-nav-label").css("display", "none");
+		else
+			$("#left-nav-label").css("display", "block");
+
+		if(mn_now == (terminate_mn + 1) && dy_now == terminate_dy)
+			$("#right-nav-label").css("display", "none");
+		else
+			$("#right-nav-label").css("display", "block");
+
 		var display_str = yr_now + "." + mn_now + "." + dy_now + '&nbsp;&nbsp; <span class = "text-' + type + '">' + getTipTypeStr(type) + '</span>'  ;
 		$(".detail-title").html(display_str);
 
+		if(dy_now - 1 < 1){
+			dd_left = yr_now + "." + (mn_now - 1) + "." + getdaysInMonth(mn_now-1, yr_now);
+		}
+		else{
+			dd_left = yr_now + "." + mn_now + "." + (dy_now - 1);
+		}
+		
+		$("#left-nav-label").text(dd_left);
+
+		if(dy_now + 1 > days_inMon){
+			dd_right = yr_now + "." + (mn_now + 1) + ".1" ;
+		}
+		else{
+			dd_right = yr_now + "." + mn_now + "." + (dy_now + 1);
+		}
+
+		$("#right-nav-label").text(dd_right);
+
+		var image_src = "";
+		if($(this).children()[0].id == "no-pic"){
+			image_src = "/img/nopic.jpg"
+		}
+
+		else{
+			image_src = "//p.udn.com.tw/upf/newmedia/2015_data/20150318_firewall_pics/" + mediaName + "/" + mediaName + "_" + mn_pic + dy_pic + ".png";
+		}
+
 		d3.select(".detail-image")
 		.append("img")
-		.attr("src", "//p.udn.com.tw/upf/newmedia/2015_data/20150318_firewall_pics/" + mediaName + "/" + mediaName + "_" + mn_pic + dy_pic + ".png")
+		.attr("src", image_src)
 		.attr("width", "100%");
 
 		d3.select(".detail-image")
@@ -306,7 +372,102 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		$(".page-overlay").css("display", "none");
 	});
 
+	$(".page-overlay").on("click",function(event){
+		if(event.target.id == "page-cover" || event.target.id == "right-nav-overlay" || event.target.id == "left-nav-overlay"){
+			$(".detail-title").empty();
+			$(".detail-image").empty();
+			$(".page-overlay").css("display", "none");
+		}
+		// console.log(event.target);
+	});
 
+	$(".go-top-img").click(function(){
+		$('html, body').animate({scrollTop:0}, 800);
+	});
+
+	$(".nav-label").click(function(){
+		this_text = $(this).text();
+
+		var yr_now = parseInt(this_text.split(".")[0]);
+		var mn_now = parseInt(this_text.split(".")[1]);
+		var dy_now = parseInt(this_text.split(".")[2]);
+
+
+		var days_inMon = getdaysInMonth(mn_now,yr_now);
+		var dd_left = "";
+		var dd_right = "";
+
+		var mn_pic;
+		var dy_pic;
+
+		if(mn_now < 10) 
+			mn_pic = "0" + mn_now.toString();
+		else 
+			mn_pic = mn_now.toString();
+
+		if(dy_now < 10)
+			dy_pic = "0" + dy_now.toString();
+		else
+			dy_pic = dy_now.toString();
+
+		var dd = "day-" + yr_now + "-" + (mn_now - 1) + "-" + dy_now;
+		// console.log(dd);
+		var type;
+
+		if (dd in allMediaDict[mediaName]){
+			type = allMediaDict[mediaName][dd];
+			// console.log(type);
+		}
+
+		else{
+			type = "no-data";
+		}
+
+		if(mn_now == (origin_mn + 1) && dy_now == origin_dy)
+			$("#left-nav-label").css("display", "none");
+		else
+			$("#left-nav-label").css("display", "block");
+
+		if(mn_now == (terminate_mn + 1) && dy_now == terminate_dy)
+			$("#right-nav-label").css("display", "none");
+		else
+			$("#right-nav-label").css("display", "block");
+
+		var display_str = yr_now + "." + mn_now + "." + dy_now + '&nbsp;&nbsp; <span class = "text-' + type + '">' + getTipTypeStr(type) + '</span>'  ;
+		$(".detail-title").html(display_str);
+
+		if(dy_now - 1 < 1){
+			dd_left = yr_now + "." + (mn_now - 1) + "." + getdaysInMonth(mn_now-1, yr_now);
+		}
+		else{
+			dd_left = yr_now + "." + mn_now + "." + (dy_now - 1);
+		}
+		
+		$("#left-nav-label").text(dd_left);
+
+		if(dy_now + 1 > days_inMon){
+			dd_right = yr_now + "." + (mn_now + 1) + ".1" ;
+		}
+		else{
+			dd_right = yr_now + "." + mn_now + "." + (dy_now + 1);
+		}
+
+		$("#right-nav-label").text(dd_right);
+
+		var image_src = "";
+		var image_date_id = yr_now + "-" + mn_now + "-" + dy_now;
+		if($("#" + image_date_id).children()[0].id == "no-pic"){
+			image_src = "/img/nopic.jpg"
+		}
+
+		else{
+			image_src = "//p.udn.com.tw/upf/newmedia/2015_data/20150318_firewall_pics/" + mediaName + "/" + mediaName + "_" + mn_pic + dy_pic + ".png";
+		}
+
+		$(".detail-image img").attr("src", image_src);
+		$(".detail-image div").attr("class", "detail-image-cover " + type );
+
+	});
 })
 
 
@@ -352,6 +513,45 @@ function getMediaName(idx){
         case 16:
             return "bsweekly";
     }
+}
+
+function getMediaNameStr(str){
+	switch(str){
+		case "udn":
+			return "聯合新聞網";
+		case "appledaily":
+			return "蘋果日報";
+		case "ltn":
+			return "自由時報";
+		case "chinatimes":
+			return "中時電子報";
+		case "cna":
+			return "中央社";
+		case "yahoo":
+			return "Yahoo奇摩新聞";
+		case "ettoday":
+			return "東森新聞雲";
+		case "nownews":
+			return "Nownews";
+		case "setn":
+			return "三立新聞網";
+		case "tvbs":
+			return "TVBS";
+		case "stormmedia":
+			return "風傳媒";
+		case "newtalk":
+			return "新頭殼";
+		case "newslens":
+			return "關鍵評論網";
+		case "pnn":
+			return "公視新聞議題中心";
+		case "cw":
+			return "天下雜誌獨立評論";
+		case "nextmag":
+			return "台灣壹週刊";
+		case "bsweekly":
+			return "商業週刊";
+	}
 }
 
 function getTipTypeStr(str){

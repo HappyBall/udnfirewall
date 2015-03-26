@@ -46,7 +46,9 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 							.attr("class", "row-container")
 							.attr("id", "row-container-" + mediaName);
 
-		row_contain.append("div").attr("class", "row-medianame").text(getMediaNameStr(mediaName));
+		var row_medianame_html = "<a href = 'subpage.html?" + mediaName + "'>" + getMediaNameStr(mediaName) + "</a>";
+
+		row_contain.append("div").attr("class", "row-medianame").html(row_medianame_html);
 
 		row_contain.append("div").attr("class", "row " + mediaName);
 
@@ -86,7 +88,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 								.append("div")
 								.attr("class", "bar-o")
 								.attr("id", mediaName + '-' + date)
-								.attr("onclick", "location.href='" + mediaName + "_page.php#day-" + yr.toString() + "-" + (mn+1).toString() + "'")
+								.attr("onclick", "location.href='subpage.html?" + mediaName + "#day-" + yr.toString() + "-" + (mn+1).toString() + "'")
 								.style({
 									"width": w.toString() + "%"
 								});
@@ -150,6 +152,11 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	mar_line_block.append("div").attr("class", "vertical-line");
 	mar_line_block.append("div").attr("class", "vertical-label").text("2015.3.1");
 
+	d3.select(".image-container")
+	.append("div")
+	.attr("class", "vertical-line-block")
+	.attr("id", "percent-label")
+	.text("封鎖百分比");
 
 	$(".bar-o").on("mouseover", function () {
 	    //stuff to do on mouseover
@@ -175,6 +182,10 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	    	var select = getMediaName(i) + "-" + date;
 	    	$("#" + select).attr("class", "bar-o");
 	    }
+	});
+
+	$(".go-top-img").click(function(){
+		$('html, body').animate({scrollTop:0}, 800);
 	});
 
 })

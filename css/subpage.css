@@ -6,19 +6,26 @@ body{
 	display: table;
 	margin: auto;
 	width: 100%;
-	max-width: 1100px;
+	max-width: 1000px;
 }
 
 .title{
 	font-size: 57px;
 	font-family: 微軟正黑體;
 	font-weight: bold;
+	margin-top: 100px;
+}
+
+.text-content{
+	font-size: 20px;
+	line-height: 32px;
+	margin-top: 20px;
 }
 
 .row-container{
 	display: table;
-	width: 90%;
-	margin: 80px auto;
+	width: 100%;
+	margin: 90px auto;
 }
 
 .row{
@@ -31,8 +38,10 @@ body{
 
 .row-percent{
 	float: left;
-	font-size: 17px;
+	font-size: 20px;
+	font-weight: bold;
 	font-family: Arial;
+	margin-top: -4px;
 }
 
 .bar{
@@ -58,6 +67,13 @@ body{
 	background-color: black;
 }
 
+#percent-label{
+	right: -55px;
+	top: -35px;
+	font-size: 15px;
+	font-family: 微軟正黑體;
+}
+
 /*.bar-o:first-child .bar{
 	border-left: 1px solid #eee;
 	opacity: 1;
@@ -72,20 +88,20 @@ body{
 
 .tooltip{
 	position: absolute;
-	top: -25px;
+	top: -20px;
 	/*left: 0;*/
 	z-index: 20;
 	display: none;
 	border: 1px solid #a0a0a0;
 	border-radius: 3px;
 	background-color: white;
-	padding: 3px 3px 3px 3px;
+	padding: 3px 3px 3px 7px;
 	font-family: 微軟正黑體;
 	font-size: 15px;
 }
 
 #calendar-container{
-	width: 90%;
+	width: 95%;
 	display: table;
 	margin: auto;
 }
@@ -115,6 +131,7 @@ body{
 	text-align: center;
 	font-size: 22px;
 	font-family: 微軟正黑體;
+	color: #a0a0a0;
 }
 
 .image{
@@ -189,7 +206,7 @@ body{
 }
 
 .detail-title{
-	font-size: 20px;
+	font-size: 32px;
 	margin: 0 10px 0 0;
 }
 
@@ -213,7 +230,7 @@ body{
 	position: absolute;
 	right: -2px;
 	top: -6px;
-	background-image: url(/img/xx.jpg) no-repeat;
+	background-image: url(/img/xx.jpg);
 	width: 12px;
 	height: 18px;
 }
@@ -240,13 +257,18 @@ body{
 	position: absolute;
 	top: 40%;
 	height: 40px;
-	width: 40px;
+	width: 120px;
+	z-index: 50000;
+	cursor: pointer;
+	font-size: 32px;
+	padding-top: 50px;
 }
 
 .left-nav .nav-label{
 	background: url(/img/left.png) no-repeat;
 	background-size: 40px;
 	right: 15%;
+	background-position: right top;
 }
 
 .right-nav .nav-label{
@@ -273,6 +295,13 @@ body{
 	position: absolute;
 	top: -20px;
 	left: -35px;
+}
+
+.go-top-img{
+	display: table;
+	float: right;
+	cursor: pointer;
+	margin-right: 50px;
 }
 
 .text-verdict-1{
