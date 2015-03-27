@@ -4,7 +4,11 @@ var origin_yr = 2015;
 var origin_mn = 0;
 var origin_dy = 12;
 
-var dayNum = daydiff(transferDate(origin_yr, origin_mn, origin_dy), nowDate());
+var terminate_yr = 2015;
+var terminate_mn = 3;
+var terminate_dy = 6;
+
+var dayNum = daydiff(transferDate(origin_yr, origin_mn, origin_dy), transferDate(terminate_yr, terminate_mn, terminate_dy)) + 1;
 // console.log(dayNum);
 var w = 100/dayNum;
 
@@ -35,6 +39,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 
 		var blocked_num = 0;
 		var all_detect = 0;
+		var daysInMonthNow = getdaysInMonth(origin_mn + 1, origin_yr);
 
 		var mediaName = sortPercentArray[mediaIdx]["mediaName"];
 		yr = origin_yr;
@@ -46,7 +51,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 							.attr("class", "row-container")
 							.attr("id", "row-container-" + mediaName);
 
-		var row_medianame_html = "<a href = 'subpage.html?" + mediaName + "'>" + getMediaNameStr(mediaName) + "</a>";
+		var row_medianame_html = "<a class = 'media-link' href = 'subpage.html?" + mediaName + "'>" + getMediaNameStr(mediaName) + "</a>";
 
 		row_contain.append("div").attr("class", "row-medianame").html(row_medianame_html);
 
@@ -54,7 +59,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 
 		row_contain.append("div").attr("class", "row-percent").attr("id", "percent-" + mediaName);
 
-		
+		console.log(daysInMonthNow);
 
 		for(var i = 0; i < dayNum; i++){
 			if(dy > daysInMonthNow){
@@ -65,6 +70,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 					yr += 1;
 				}
 				daysInMonthNow = getdaysInMonth(mn + 1, yr);
+
 			}
 			var date = "day-" + yr.toString() + "-" + mn.toString() + "-" + dy.toString();
 			
