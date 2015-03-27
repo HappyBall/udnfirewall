@@ -88,7 +88,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 				type = "no-data";
 			}
 
-			var date_for_tip = yr.toString() + "." + (mn+1).toString() + "." + dy.toString() + ' <span class = "text-' + type + '">' + getTipTypeStr(type) + '</span>'  ;
+			var date_for_tip = yr.toString() + "." + (mn+1).toString() + "." + dy.toString() + ' <span class = "text-' + type + '">' + getTipTypeStr(type) + '</span> »'  ;
 
 			var create_bar_o = d3.select("." + mediaName)
 								.append("div")
@@ -298,15 +298,15 @@ function getTipTypeStr(str){
 function getTipWidth(str){
 	switch(str){
 		case "verdict-1":
-			return "140px";
+			return "150px";
 		case "verdict-2":
-			return "140px";
+			return "150px";
 		case "verdict-3":
-			return "140px";
+			return "150px";
 		case "verdict-5":
-			return "108px";
+			return "118px";
 		case "no-data":
-			return "124px";
+			return "134px";
 	}
 }
 

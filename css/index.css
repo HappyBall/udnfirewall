@@ -35,7 +35,14 @@ body{
 	font-size: 37px;
 	font-family: 微軟正黑體;
 	font-weight: bold;
-	margin-top: 20px;
+	margin-top: 30px;
+}
+
+.text-title{
+	font-size: 28px;
+	font-family: 微軟正黑體;
+	font-weight: bold;
+	margin-top: 30px;
 }
 
 .text-content{
@@ -44,10 +51,54 @@ body{
 	text-align: justify;
 	margin-top: 20px;
 	line-height: 32px;
+	width: 70%;
+}
+
+.logo-img{
+	display: table;
+	float: left;
+}
+
+#udn-logo{
+	margin-left: 9%;
+	margin-top: 8px;
+}
+
+#newmedia-logo{
+	margin-left: 20px;
+}
+
+.logo-container{
+	display: table;
+	width: 100%;
+	margin-top: 50px;
+}
+
+.image-with-text{
+	margin-top: 20px;
+	position: relative;
+}
+
+.image-with-text .text-content{
+	position: absolute;
+	top: -240px;
+	right: 0;
+	width: 20%;
+	color: #a0a0a0;
+}
+
+#report-top{
+	margin-top: 70px;
 }
 
 #little-title-underimage{
 	margin-top: 50px;
+}
+
+.pointer-label{
+	margin: -8px 10px 0;
+	float: left;
+	font-family: 微軟正黑體;
 }
 
 .image-labels-block{
@@ -121,7 +172,7 @@ body{
 
 .media-link{
 	text-decoration: none;
-	color: black;
+	color: blue;
 }
 
 .row-percent{
