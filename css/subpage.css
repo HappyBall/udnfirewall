@@ -9,17 +9,63 @@ body{
 	max-width: 1000px;
 }
 
+#go-back{
+	display: table;
+	margin-top: 100px;
+}
+
+#go-back-img{
+	float: left;
+}
+
+#go-back-text{
+	font-family: 微軟正黑體;
+	font-size: 15px;
+	float: left;
+	margin: 5px 10px;
+}
+
 .title{
 	font-size: 57px;
 	font-family: 微軟正黑體;
 	font-weight: bold;
-	margin-top: 100px;
+	margin-top: 40px;
 }
 
 .text-content{
 	font-size: 20px;
 	line-height: 32px;
 	margin-top: 20px;
+}
+
+.pointer-label{
+	margin: -11px 10px 0;
+	float: left;
+	font-family: 微軟正黑體;
+}
+
+.image-labels-block{
+	display: table;
+	/*margin-left: 8%;*/
+	margin-top: 50px;
+}
+
+.status{
+	float: left;
+	font-family: 微軟正黑體;
+	margin: 0 10px 0;
+}
+
+.square{
+	width: 8px;
+	height: 8px;
+	margin: 0 5px 1px 5px;
+	display: inline-block;
+}
+
+.text{
+	display: inline;
+	font-size: 15px;
 }
 
 .row-container{
