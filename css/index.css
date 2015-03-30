@@ -1,9 +1,12 @@
 body{
 	padding-bottom: 40px;
+	margin: 0;
 }
 
 header{
 	background-color: #3f3f3f;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .logo-img{
