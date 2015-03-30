@@ -139,7 +139,7 @@ body{
 	float: left;
 	margin: 0px 0.8% 0.8% 0px;
 	width: 13.2%;
-	height: 105px;
+	height: 100px;
 	display: table;
 	position: relative;
 	cursor: pointer;
@@ -209,6 +209,7 @@ body{
 .detail-title{
 	font-size: 32px;
 	margin: 0 10px 0 0;
+	font-family: Arial;
 }
 
 .detail-image{
@@ -231,7 +232,7 @@ body{
 	position: absolute;
 	right: -2px;
 	top: -6px;
-	background-image: url(/img/xx.jpg);
+	background-image: url(../img/xx.jpg);
 	width: 12px;
 	height: 18px;
 }
@@ -245,6 +246,10 @@ body{
 	opacity: 0.5;
 }
 
+#left-nav-label{
+	font-family: Arial;
+}
+
 .right-nav{
 	width: 20%;
 	height: 100%;
@@ -252,6 +257,10 @@ body{
 	left: 80%;
 	position: fixed;
 	opacity: 0.5;
+}
+
+#right-nav-label{
+	font-family: Arial;
 }
 
 .nav-label{
@@ -266,14 +275,14 @@ body{
 }
 
 .left-nav .nav-label{
-	background: url(/img/left.png) no-repeat;
+	background: url(../img/left.png) no-repeat;
 	background-size: 40px;
 	right: 15%;
 	background-position: right top;
 }
 
 .right-nav .nav-label{
-	background: url(/img/right.png) no-repeat;
+	background: url(../img/right.png) no-repeat;
 	background-size: 40px;
 	left: 15%;
 }
@@ -300,9 +309,12 @@ body{
 
 .go-top-img{
 	display: table;
-	float: right;
+	/*float: right;*/
 	cursor: pointer;
-	margin-right: 20px;
+	/*margin-right: 20px;*/
+	position: fixed;
+	bottom: 20px;
+	right: 110px;
 }
 
 .text-verdict-1{

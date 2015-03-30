@@ -1,4 +1,5 @@
-var allMediaDict = {}
+var allMediaDict = {};
+var mediaDescriptionDict = {};
 var monthNames = ["一月", "二月", "三月", "四月", "五月", "六月","七月", "八月", "九月", "十月", "十一月", "十二月"];
 var dayNames = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
 
@@ -34,7 +35,18 @@ else
 
 $(".title").text(getMediaNameStr(mediaName));
 
+d3.csv("data/media.csv", function(description_data){
+	for(var i = 0; i < description_data.length; i++){
+		mediaDescriptionDict[description_data[i]["mediaName"]] = description_data[i]["Description"];
+	}
+	// console.log(mediaDescriptionDict);
+});
+
+
+
 d3.json("data/allMediaDayType.json", function (dataset) {
+
+	$(".text-content").text(mediaDescriptionDict[mediaName]);
 
 	allMediaDict = dataset;
 	var blocked_num = 0;
@@ -107,7 +119,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	start_line_block.append("div").attr("class", "vertical-line");
 	start_line_block.append("div").attr("class", "vertical-label").text("2015.1.12");
 
-	var feb_left = ((93*20)/dayNum ) + "%";
+	var feb_left = ((91*20)/dayNum ) + "%";
 
 	var feb_line_block = d3.select(".row")
 							.append("div")
@@ -118,7 +130,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	feb_line_block.append("div").attr("class", "vertical-line");
 	feb_line_block.append("div").attr("class", "vertical-label").text("2015.2.1");	
 
-	var mar_left = ((93*48)/dayNum - 0.1) + "%";
+	var mar_left = ((91*48)/dayNum ) + "%";
 
 	var mar_line_block = d3.select(".row")
 							.append("div")
@@ -128,6 +140,17 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	
 	mar_line_block.append("div").attr("class", "vertical-line");
 	mar_line_block.append("div").attr("class", "vertical-label").text("2015.3.1");
+
+	var apr_left = ((91*79)/dayNum + 0.1) + "%";
+
+	var apr_line_block = d3.select(".row")
+							.append("div")
+							.attr("class", "vertical-line-block")
+							.attr("id", "apr-line-block")
+							.style("left", apr_left);
+	
+	apr_line_block.append("div").attr("class", "vertical-line");
+	apr_line_block.append("div").attr("class", "vertical-label").text("2015.4.1");
 
 	d3.select(".row")
 	.append("div")
@@ -244,7 +267,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 								.attr("id", yr_now + "-" + mn_now + "-" + j);
 
 			image_block.append("img")
-			.attr("src", "//p.udn.com.tw/upf/newmedia/2015_data/20150318_firewall_pics/" + mediaName + "/" + mediaName + "_" + mn_pic + dy_pic + ".png")
+			.attr("src", "//p.udn.com.tw/upf/newmedia/2015_data/20150318_firewall_pics/" + mediaName + "_small/" + mediaName + "_" + mn_pic + dy_pic + "_small.png")
 			.attr("width", "100%");
 			
 			image_block.append("div")
@@ -263,7 +286,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
     .error(function() { 
     	// $(this).parent().attr("class", "image future");  
     	// console.log($(this));
-    	$(this).attr("src", "/img/nopic.jpg")
+    	$(this).attr("src", "img/nopic.jpg")
     			.attr("id", "no-pic");  
     });
 
@@ -347,7 +370,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 
 		var image_src = "";
 		if($(this).children()[0].id == "no-pic"){
-			image_src = "/img/nopic.jpg"
+			image_src = "img/nopic.jpg"
 		}
 
 		else{
@@ -383,6 +406,15 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 
 	$(".go-top-img").click(function(){
 		$('html, body').animate({scrollTop:0}, 800);
+	});
+
+	$(window).on("scroll", function(){
+		if ( $(window).scrollTop() >= $("#calendar-container").offset().top ){
+			$(".go-top-img").fadeIn();
+		}
+		else{
+			$(".go-top-img").fadeOut();
+		}
 	});
 
 	$(".nav-label").click(function(){
@@ -457,7 +489,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		var image_src = "";
 		var image_date_id = yr_now + "-" + mn_now + "-" + dy_now;
 		if($("#" + image_date_id).children()[0].id == "no-pic"){
-			image_src = "/img/nopic.jpg"
+			image_src = "img/nopic.jpg"
 		}
 
 		else{

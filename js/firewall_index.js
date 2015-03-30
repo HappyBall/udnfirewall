@@ -59,7 +59,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 
 		row_contain.append("div").attr("class", "row-percent").attr("id", "percent-" + mediaName);
 
-		console.log(daysInMonthNow);
+		// console.log(daysInMonthNow);
 
 		for(var i = 0; i < dayNum; i++){
 			if(dy > daysInMonthNow){
@@ -123,8 +123,8 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 			dy += 1;
 		}
 
-		if(all_detect == 0) all_detect = 1;
-		$("#percent-" + mediaName).text(Math.round((blocked_num/all_detect)*100) + "%");
+		if(all_detect == 0) $("#percent-" + mediaName).text("----");
+		else $("#percent-" + mediaName).text(Math.round((blocked_num/all_detect)*100) + "%");
 	}
 
 	var start_line_block = d3.select(".image-container")
@@ -136,7 +136,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	start_line_block.append("div").attr("class", "vertical-line");
 	start_line_block.append("div").attr("class", "vertical-label").text("2015.1.12");
 
-	var feb_left = ((72*20)/dayNum + 15.1) + "%";
+	var feb_left = ((77*20)/dayNum + 15.1) + "%";
 
 	var feb_line_block = d3.select(".image-container")
 							.append("div")
@@ -147,7 +147,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	feb_line_block.append("div").attr("class", "vertical-line");
 	feb_line_block.append("div").attr("class", "vertical-label").text("2015.2.1");	
 
-	var mar_left = ((72*48)/dayNum + 15.2) + "%";
+	var mar_left = ((77*48)/dayNum + 15.1) + "%";
 
 	var mar_line_block = d3.select(".image-container")
 							.append("div")
@@ -157,6 +157,17 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	
 	mar_line_block.append("div").attr("class", "vertical-line");
 	mar_line_block.append("div").attr("class", "vertical-label").text("2015.3.1");
+
+	var apr_left = ((77*79)/dayNum + 15.2) + "%";
+
+	var apr_line_block = d3.select(".image-container")
+							.append("div")
+							.attr("class", "vertical-line-block")
+							.attr("id", "apr-line-block")
+							.style("left", apr_left);
+	
+	apr_line_block.append("div").attr("class", "vertical-line");
+	apr_line_block.append("div").attr("class", "vertical-label").text("2015.4.1");
 
 	d3.select(".image-container")
 	.append("div")
@@ -192,6 +203,16 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 
 	$(".go-top-img").click(function(){
 		$('html, body').animate({scrollTop:0}, 800);
+		// $(".go-top-img").fadeOut();
+	});
+
+	$(window).on("scroll", function(){
+		if ( $(window).scrollTop() >= $(".image-labels-block").offset().top ){
+			$(".go-top-img").fadeIn();
+		}
+		else{
+			$(".go-top-img").fadeOut();
+		}
 	});
 
 })
@@ -276,7 +297,7 @@ function getMediaNameStr(str){
 		case "nextmag":
 			return "台灣壹週刊";
 		case "bsweekly":
-			return "商業週刊";
+			return "商業周刊";
 	}
 }
 
@@ -298,15 +319,15 @@ function getTipTypeStr(str){
 function getTipWidth(str){
 	switch(str){
 		case "verdict-1":
-			return "150px";
+			return "155px";
 		case "verdict-2":
-			return "150px";
+			return "155px";
 		case "verdict-3":
-			return "150px";
+			return "155px";
 		case "verdict-5":
-			return "118px";
+			return "123px";
 		case "no-data":
-			return "134px";
+			return "139px";
 	}
 }
 

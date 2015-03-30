@@ -17,7 +17,7 @@ body{
 }
 
 .title{
-	font-size: 90px;
+	font-size: 74px;
 	font-family: 微軟正黑體;
 	font-weight: bold;
 	margin-top: 100px;
@@ -81,10 +81,17 @@ body{
 
 .image-with-text .text-content{
 	position: absolute;
-	top: -240px;
 	right: 0;
 	width: 20%;
 	color: #a0a0a0;
+}
+
+#image-label-02{
+	bottom: -184px;
+}
+
+#image-label-01{
+	bottom: -214px;
 }
 
 #report-top{
@@ -95,8 +102,13 @@ body{
 	margin-top: 50px;
 }
 
+#test-source{
+	font-size: 15px;
+	line-height: 22px;
+}
+
 .pointer-label{
-	margin: -8px 10px 0;
+	margin: -14px 10px 0;
 	float: left;
 	font-family: 微軟正黑體;
 }
@@ -234,10 +246,13 @@ body{
 }
 
 .go-top-img{
-	display: table;
-	float: right;
+	display: none;
+	/*float: right;*/
 	cursor: pointer;
-	margin-right: 50px;
+	/*margin-right: 20px;*/
+	position: fixed;
+	bottom: 20px;
+	right: 110px;
 }
 /*.bar-o:last-child{
 	margin-left: 2.4%;
