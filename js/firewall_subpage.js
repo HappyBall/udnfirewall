@@ -46,7 +46,7 @@ d3.csv("data/media.csv", function(description_data){
 
 d3.json("data/allMediaDayType.json", function (dataset) {
 
-	$(".text-content").text(mediaDescriptionDict[mediaName]);
+	
 
 	allMediaDict = dataset;
 	var blocked_num = 0;
@@ -106,6 +106,8 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 
 		dy += 1;
 	}
+
+	$(".text-content").text(mediaDescriptionDict[mediaName]);
 
 	if(all_detect == 0) all_detect = 1;
 	$(".row-percent").text(Math.round((blocked_num/all_detect)*100) + "%");
@@ -298,7 +300,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		}, 800);
 	});
 
-	$(".image").click(function(){
+	/*$(".image").click(function(){
 
 		var this_id = $(this).attr("id");
 		// console.log(this_id);
@@ -402,7 +404,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 			$(".page-overlay").css("display", "none");
 		}
 		// console.log(event.target);
-	});
+	});*/
 
 	$(".go-top-img").click(function(){
 		$('html, body').animate({scrollTop:0}, 800);
@@ -417,7 +419,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		}
 	});
 
-	$(".nav-label").click(function(){
+	/*$(".nav-label").click(function(){
 		this_text = $(this).text();
 
 		var yr_now = parseInt(this_text.split(".")[0]);
@@ -499,7 +501,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		$(".detail-image img").attr("src", image_src);
 		$(".detail-image div").attr("class", "detail-image-cover " + type );
 
-	});
+	});*/
 })
 
 
@@ -539,10 +541,8 @@ function getMediaName(idx){
         case 13:
             return "pnn";
         case 14:
-            return "cw";
-        case 15:
             return "nextmag";
-        case 16:
+        case 15:
             return "bsweekly";
     }
 }
@@ -577,8 +577,6 @@ function getMediaNameStr(str){
 			return "關鍵評論網";
 		case "pnn":
 			return "公視新聞議題中心";
-		case "cw":
-			return "天下雜誌獨立評論";
 		case "nextmag":
 			return "台灣壹週刊";
 		case "bsweekly":

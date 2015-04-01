@@ -254,10 +254,8 @@ function getMediaName(idx){
         case 13:
             return "pnn";
         case 14:
-            return "cw";
-        case 15:
             return "nextmag";
-        case 16:
+        case 15:
             return "bsweekly";
     }
 }
@@ -292,8 +290,6 @@ function getMediaNameStr(str){
 			return "關鍵評論網";
 		case "pnn":
 			return "公視新聞議題中心";
-		case "cw":
-			return "天下雜誌獨立評論";
 		case "nextmag":
 			return "台灣壹週刊";
 		case "bsweekly":

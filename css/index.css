@@ -1,5 +1,5 @@
 body{
-	padding-bottom: 40px;
+	/*padding-bottom: 200px;*/
 	margin: 0;
 }
 
@@ -46,7 +46,7 @@ header{
 }
 
 .title{
-	font-size: 74px;
+	font-size: 70px;
 	font-family: 微軟正黑體;
 	font-weight: bold;
 	margin-top: 100px;
@@ -97,6 +97,10 @@ header{
 	color: #a0a0a0;
 }
 
+#image-label-03{
+	bottom: -280px;
+}
+
 #image-label-02{
 	bottom: -184px;
 }
@@ -109,13 +113,22 @@ header{
 	margin-top: 70px;
 }
 
-#text-under-chart{
+.text-content-under-chart{
 	width: 97%;
+	font-size: 20px;
+	font-family: 微軟正黑體;
+	text-align: justify;
+	margin-top: 20px;
+	line-height: 32px;
+}
+
+#test-source-title{
+	margin-top: 100px;
 }
 
 #test-source{
-	font-size: 15px;
-	line-height: 22px;
+	/*font-size: 15px;*/
+	/*line-height: 22px;*/
 }
 
 .pointer-label{
@@ -264,6 +277,13 @@ header{
 	position: fixed;
 	bottom: 20px;
 	right: 110px;
+}
+
+footer{
+	background-color: #3f3f3f;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: 200px;
 }
 /*.bar-o:last-child{
 	margin-left: 2.4%;

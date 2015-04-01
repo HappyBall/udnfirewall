@@ -1,5 +1,5 @@
 body{
-	padding-bottom: 40px;
+	/*padding-bottom: 40px;*/
 	margin: 0;
 }
 
@@ -186,7 +186,7 @@ header{
 	width: 95%;
 	display: table;
 	margin: auto;
-	margin-top: -20px;
+	margin-top: -70px;
 }
 
 .month-name{
@@ -224,7 +224,7 @@ header{
 	height: 100px;
 	display: table;
 	position: relative;
-	cursor: pointer;
+	/*cursor: pointer;*/
 }
 
 .day-overlay{
@@ -402,6 +402,13 @@ header{
 .text-verdict-1{
 	color: #b5b5b5;
 	font-family: 微軟正黑體;
+}
+
+footer{
+	background-color: #3f3f3f;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: 200px;
 }
 
 .text-verdict-2{
