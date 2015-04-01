@@ -107,7 +107,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		dy += 1;
 	}
 
-	$(".text-content").text(mediaDescriptionDict[mediaName]);
+	$(".text-content").html(mediaDescriptionDict[mediaName]);
 
 	if(all_detect == 0) all_detect = 1;
 	$(".row-percent").text(Math.round((blocked_num/all_detect)*100) + "%");

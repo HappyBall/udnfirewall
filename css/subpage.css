@@ -66,6 +66,11 @@ header{
 	margin: 40px auto;
 }
 
+.media-link{
+	text-decoration: none;
+	color: blue;
+}
+
 .text-content{
 	font-size: 20px;
 	line-height: 32px;
