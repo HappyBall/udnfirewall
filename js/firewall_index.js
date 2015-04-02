@@ -1,3 +1,9 @@
+if( /Android|webOS|iPhone|iPod|iPad|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+ // some code..
+ window.location.href = "http://p.udn.com.tw/upf/newmedia/2015_data/20150327_udnfirewall/udnfirewall_m/index.html";
+
+}
+
 var allMediaDict = {}
 
 var origin_yr = 2015;
@@ -17,6 +23,8 @@ var mn = origin_mn;
 var dy = origin_dy;
 var daysInMonthNow = getdaysInMonth(origin_mn + 1, origin_yr);
 var sortPercentArray = [];
+
+var toBotCount = 0;
 
 d3.json("data/allMediaDayType.json", function (dataset) {
 	allMediaDict = dataset;
@@ -178,6 +186,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	$(".bar-o").on("mouseover", function () {
 	    //stuff to do on mouseover
 	    var this_id = $(this).attr("id");
+	    
 	    $("#" + this_id + "-tip").css("display", "table");
 
 	    var date_seperate = $(this).attr("id").split("-");
@@ -186,6 +195,15 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	    	var select = getMediaName(i) + "-" + date;
 	    	$("#" + select).attr("class", "bar-o hover");
 	    }
+
+	    // console.log(date_seperate[0]);
+
+	    ga("send", {
+          "hitType": "event",
+          "eventCategory": "mainpage-bar",
+          "eventAction": "mousehover",
+          "eventLabel": date_seperate[0]
+        });
 	});
 
 	$(".bar-o").on("mouseleave", function () {
@@ -201,9 +219,27 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	    }
 	});
 
+	$(".bar-o").on("click", function () {
+		var date_seperate = $(this).attr("id").split("-");
+		// console.log(date_seperate[0]);
+		ga("send", {
+          "hitType": "event",
+          "eventCategory": "mainpage-bar",
+          "eventAction": "mouseclick",
+          "eventLabel": date_seperate[0]
+        });
+
+	});
+
 	$(".go-top-img").click(function(){
 		$('html, body').animate({scrollTop:0}, 800);
 		// $(".go-top-img").fadeOut();
+		ga("send", {
+          "hitType": "event",
+          "eventCategory": "mainpage-gotop",
+          "eventAction": "mouseclick",
+          "eventLabel": "go-top-btn"
+        });
 	});
 
 	$(window).on("scroll", function(){
@@ -213,6 +249,22 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		else{
 			$(".go-top-img").fadeOut();
 		}
+
+		if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        	// you're at the bottom of the page
+        	
+        	if(toBotCount == 0){
+        		// console.log("bot is here");
+        		toBotCount = 1;
+        		ga("send", {
+		          "hitType": "event",
+		          "eventCategory": "mainpage-scrolling",
+		          "eventAction": "windowscroll",
+		          "eventLabel": "scroll-to-bottom"
+		        });
+        	}
+
+    	}
 	});
 
 })

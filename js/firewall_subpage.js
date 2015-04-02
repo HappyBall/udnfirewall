@@ -21,6 +21,8 @@ var dy = origin_dy;
 var daysInMonthNow = getdaysInMonth(origin_mn + 1, origin_yr);
 var mediaName = "";
 
+var toBotCount = 0;
+
 var query = window.location.search;
 // Skip the leading ?, which should always be there, 
 // but be careful anyway
@@ -40,6 +42,7 @@ d3.csv("data/media.csv", function(description_data){
 		mediaDescriptionDict[description_data[i]["mediaName"]] = description_data[i]["Description"];
 	}
 	// console.log(mediaDescriptionDict);
+	$(".text-content").html(mediaDescriptionDict[mediaName]);
 });
 
 
@@ -107,8 +110,6 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		dy += 1;
 	}
 
-	$(".text-content").html(mediaDescriptionDict[mediaName]);
-
 	if(all_detect == 0) all_detect = 1;
 	$(".row-percent").text(Math.round((blocked_num/all_detect)*100) + "%");
 
@@ -165,6 +166,15 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	    var this_id = $(this).attr("id");
 	    $("#" + this_id + "-tip").css("display", "table");
 	    $(this).attr("class", "bar-o hover");
+
+	    var date_seperate = $(this).attr("id").split("-");
+
+	    ga("send", {
+          "hitType": "event",
+          "eventCategory": "subpage-bar",
+          "eventAction": "mousehover",
+          "eventLabel": date_seperate[0]
+        });
 	});
 
 	$(".bar-o").on("mouseleave", function () {
@@ -192,6 +202,8 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		}
 		// console.log(monthDict);
 	}
+
+
 
 	for (var i in Object.keys(monthDict)){
 
@@ -283,6 +295,8 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		}
 	}
 
+	
+
 	$("img")
 	.load(function() { console.log("image loaded correctly"); })
     .error(function() { 
@@ -298,6 +312,13 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	   	$('html, body').animate({
 			scrollTop: ($("#" + s).offset().top)
 		}, 800);
+
+		ga("send", {
+          "hitType": "event",
+          "eventCategory": "subpage-bar",
+          "eventAction": "mouseclick",
+          "eventLabel": $(this).attr("id").split("-")[0]
+        });
 	});
 
 	/*$(".image").click(function(){
@@ -408,6 +429,22 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 
 	$(".go-top-img").click(function(){
 		$('html, body').animate({scrollTop:0}, 800);
+		ga("send", {
+          "hitType": "event",
+          "eventCategory": "subpage-gotop",
+          "eventAction": "mouseclick",
+          "eventLabel": "go-top-btn"
+        });
+	});
+
+	$("#go-back").click(function(){
+
+		ga("send", {
+          "hitType": "event",
+          "eventCategory": "subpage-goback",
+          "eventAction": "mouseclick",
+          "eventLabel": "go-back-btn"
+        });
 	});
 
 	$(window).on("scroll", function(){
@@ -417,6 +454,22 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 		else{
 			$(".go-top-img").fadeOut();
 		}
+
+		if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        	// you're at the bottom of the page
+        	
+        	if(toBotCount == 0){
+        		// console.log("bot is here");
+        		toBotCount = 1;
+        		ga("send", {
+		          "hitType": "event",
+		          "eventCategory": "subpage-scrolling",
+		          "eventAction": "windowscroll",
+		          "eventLabel": "scroll-to-bottom"
+		        });
+        	}
+
+    	}
 	});
 
 	/*$(".nav-label").click(function(){
