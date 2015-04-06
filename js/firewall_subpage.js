@@ -133,7 +133,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	feb_line_block.append("div").attr("class", "vertical-line");
 	feb_line_block.append("div").attr("class", "vertical-label").text("2015.2.1");	
 
-	var mar_left = ((91*48)/dayNum ) + "%";
+	var mar_left = ((91*48)/dayNum + 0.2) + "%";
 
 	var mar_line_block = d3.select(".row")
 							.append("div")
@@ -144,7 +144,7 @@ d3.json("data/allMediaDayType.json", function (dataset) {
 	mar_line_block.append("div").attr("class", "vertical-line");
 	mar_line_block.append("div").attr("class", "vertical-label").text("2015.3.1");
 
-	var apr_left = ((91*79)/dayNum + 0.1) + "%";
+	var apr_left = ((91*79)/dayNum + 0.3) + "%";
 
 	var apr_line_block = d3.select(".row")
 							.append("div")

@@ -298,6 +298,10 @@ header{
 	right: 110px;
 }
 
+#last-para{
+	margin-bottom: 50px;
+}
+
 footer{
 	background-color: #3f3f3f;
 	padding-top: 10px;

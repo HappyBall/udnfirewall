@@ -77,6 +77,7 @@ header{
 	margin-top: 20px;
 	width: 95%;
 	margin: 20px auto;
+	font-family: 微軟正黑體;
 }
 
 .subpage_ps{
@@ -179,7 +180,7 @@ header{
 
 .tooltip{
 	position: absolute;
-	top: -20px;
+	top: -25px;
 	/*left: 0;*/
 	z-index: 20;
 	display: none;
@@ -380,14 +381,14 @@ header{
 
 .vertical-line-block{
 	position: absolute;
-	top: -16px;
+	top: -23px;
 	pointer-events: none;
 	z-index: 10;
 }
 
 .vertical-line{
 	border-left: 1px solid #a0a0a0;
-	height: 20px;
+	height: 27px;
 }
 
 .vertical-label{
